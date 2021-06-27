@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Framework\Framework\Framework.Persistence\Framework.Persistence.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
     <ProjectReference Include="..\..\Domain\MOMS.CustomerContext.Domain\MOMS.CustomerContext.Domain.csproj" />
   </ItemGroup>
 

@@ -20,10 +20,16 @@ namespace MOMS.CustomerContext.Domain.Customers
             LastName = lastName;
             NationalCode = nationalCode;
             MobileNumber = mobileNumber;
+            SendNotification(MobileNumber);
             PhoneNumber = phoneNumber;
             Gender = gender;
             MartialStatus = martialStatus;
         }
+
+        private void SendNotification(String moduleHandle)
+        { 
+        }
+
         protected Customer() { }
 
         public string FileNumber { get; set; }
@@ -34,5 +40,6 @@ namespace MOMS.CustomerContext.Domain.Customers
         public string PhoneNumber { get; set; }
         public int Gender { get; set; }
         public int MartialStatus { get; set; }
+
     }
 }

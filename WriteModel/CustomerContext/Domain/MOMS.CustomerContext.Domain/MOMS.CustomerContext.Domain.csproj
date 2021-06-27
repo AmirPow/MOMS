@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Framework\Framework\Framework.Core\Framework.Core.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\Framework\Framework\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
   </ItemGroup>
 
 </Project>

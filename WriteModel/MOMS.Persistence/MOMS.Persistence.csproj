@@ -22,6 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Framework\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
     <ProjectReference Include="..\..\..\..\Framework\Framework\Framework.Persistence\Framework.Persistence.csproj" />
+    <ProjectReference Include="..\..\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
+    <ProjectReference Include="..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
     <ProjectReference Include="..\CustomerContext\Infrastracture\MOMS.CustomerContext.Persistence\MOMS.CustomerContext.Persistence.csproj" />
   </ItemGroup>
 

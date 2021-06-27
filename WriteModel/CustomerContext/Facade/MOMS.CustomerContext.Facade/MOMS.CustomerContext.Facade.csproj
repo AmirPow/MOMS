@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Framework\Framework\Framework.Facade\Framework.Facade.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Framework.Facade\Framework.Facade.csproj" />
     <ProjectReference Include="..\..\FacadeContracts\MOMS.CustomerContext.Facade.Contracts\MOMS.CustomerContext.Facade.Contracts.csproj" />
   </ItemGroup>
 
