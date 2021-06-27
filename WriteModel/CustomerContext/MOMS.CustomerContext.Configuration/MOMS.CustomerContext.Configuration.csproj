@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Framework\Framework\Framework.ApplicationService\Framework.ApplicationService.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Framework\Framework\Framework.DependencyInjection\framework.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Framework\Framework\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Framework\Framework\Framework.Facade\Framework.Facade.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Framework\Framework\Framework.Persistence\Framework.Persistence.csproj" />
+    <ProjectReference Include="..\..\UserContext\DomainService\MOMS.UserContext.DomainService\MOMS.UserContext.DomainService.csproj" />
+    <ProjectReference Include="..\ApplicationService\MOMS.CustomerContext.ApplicationService\MOMS.CustomerContext.ApplicationService.csproj" />
+    <ProjectReference Include="..\Facade\MOMS.CustomerContext.Facade\MOMS.CustomerContext.Facade.csproj" />
+    <ProjectReference Include="..\Infrastracture\MOMS.CustomerContext.Persistence\MOMS.CustomerContext.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
