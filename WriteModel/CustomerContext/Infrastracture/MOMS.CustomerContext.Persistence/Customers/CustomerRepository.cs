@@ -21,6 +21,26 @@ namespace MOMS.CustomerContext.Persistence.Customers
             Create(customer);
         }
 
+        public void DeleteCustomer(Customer customer)
+        {
+            Remove(customer);
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            Update(customer);
+        }
+
+        public Customer GetCustomerByFileNumber(string fileNumber)
+        {
+            return _dbContext.Set<Customer>().SingleOrDefault(a => a.FileNumber == fileNumber);
+        }
+
+        public Customer GetCustomerById(Guid id)
+        {
+            return _dbContext.Set<Customer>().SingleOrDefault(a => a.Id == id);
+        }
+
         public int GetLastFileNumber()
         {
             return int.Parse(_dbContext.Set<Customer>().Select(a => a.FileNumber).Max());

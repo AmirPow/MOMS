@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MOMS.CustomerContext.ApplicationServiceContracts;
-using MOMS.CustomerContext.Facade.Contracts;
+using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
+using MOMS.CustomerContext.Facade.Contracts.Customers;
 
 namespace Api.Controllers
 {
@@ -16,9 +16,22 @@ namespace Api.Controllers
             this.customerCommandFacade = customerCommandFacade;
         }
         [HttpPost]
+        [Route("CreateCustomer")]
         public void Create(CreateCustomerCommand createCustomerCommand)
         {
             customerCommandFacade.CreateCustomer(createCustomerCommand);
+        }
+        [HttpPost]
+        [Route("DeleteCustomer")]
+        public void Delete(DeleteCustomerCommand deleteCustomerCommand)
+        {
+            customerCommandFacade.DeleteCustomer(deleteCustomerCommand);
+        }
+        [HttpPost]
+        [Route("UpdateCustomer")]
+        public void Update(UpdateCustomerCommand UpdateCustomerCommand)
+        {
+            customerCommandFacade.UpdateCustomer(UpdateCustomerCommand);
         }
     }
 }

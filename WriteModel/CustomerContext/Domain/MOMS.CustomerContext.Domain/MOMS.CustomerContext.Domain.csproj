@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Customers\NewFolder\" />
+  </ItemGroup>
+
 </Project>

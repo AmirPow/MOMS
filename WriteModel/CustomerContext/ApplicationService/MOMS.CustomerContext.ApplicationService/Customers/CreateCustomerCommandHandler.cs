@@ -1,11 +1,11 @@
 ﻿using Framework.Core.ApplicationService;
-using MOMS.CustomerContext.ApplicationServiceContracts;
+using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Domain.Customers;
 using MOMS.CustomerContext.Domain.Customers.Services;
 using MOMS.CustomerContext.DomainService.Customers;
 using System;
 
-namespace MOMS.CustomerContext.ApplicationService
+namespace MOMS.CustomerContext.ApplicationService.Customers
 {
     public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommand>
     {
@@ -13,16 +13,16 @@ namespace MOMS.CustomerContext.ApplicationService
         private readonly ISendTextMessage sendTextMessage;
 
         public CreateCustomerCommandHandler(ICustomerRepository customerRepository
-            ,ISendTextMessage sendTextMessage)
+            , ISendTextMessage sendTextMessage)
         {
             this.customerRepository = customerRepository;
             this.sendTextMessage = sendTextMessage;
         }
         public void Execute(CreateCustomerCommand command)
         {
-            
+
             var customer = new Customer(
-                (customerRepository.GetLastFileNumber()+1).ToString(),
+                (customerRepository.GetLastFileNumber() + 1).ToString(),
                 command.FirstName,
                 command.LastName,
                 command.NationalCode,

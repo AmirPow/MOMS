@@ -1,9 +1,9 @@
 ﻿using Framework.Core.ApplicationService;
 using System;
 
-namespace MOMS.CustomerContext.ApplicationServiceContracts
+namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
 {
-    public class CreateCustomerCommand :Command
+    public class CreateCustomerCommand : Command
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
