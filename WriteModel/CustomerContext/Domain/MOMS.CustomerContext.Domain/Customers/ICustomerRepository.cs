@@ -9,6 +9,7 @@ namespace MOMS.CustomerContext.Domain.Customers
     public interface ICustomerRepository
     {
         void CreateCustomer(Customer customer);
+        int GetLastFileNumber();
         //Customer GetCustomerByFileNumber(string fileNumber);
         //Customer GetCustomerById(Guid id);
         //List<Customer> GetCustomerList();

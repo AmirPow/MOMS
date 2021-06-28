@@ -1,12 +1,17 @@
 ﻿using Framework.Core.Domain;
 using Framework.Domain;
+using MOMS.CustomerContext.Domain.Customers.Services;
 using System;
+using System.Linq;
 
 namespace MOMS.CustomerContext.Domain.Customers
 {
     public class Customer : EntityBase, IAggregateRoot
     {
-        public Customer(string filenumber,
+
+
+        public Customer(
+            string fileNumber,
             string firstName,
             string lastName,
             string nationalCode,
@@ -15,20 +20,27 @@ namespace MOMS.CustomerContext.Domain.Customers
             int gender,
             int martialStatus)
         {
-            FileNumber = filenumber;
+
+            FileNumber = fileNumber;
             FirstName = firstName;
             LastName = lastName;
             NationalCode = nationalCode;
+            //SetMobileNumber(mobileNumber);
             MobileNumber = mobileNumber;
-            SendNotification(MobileNumber);
             PhoneNumber = phoneNumber;
             Gender = gender;
             MartialStatus = martialStatus;
         }
 
-        private void SendNotification(String moduleHandle)
-        { 
+        private void SetMobileNumber(string mobileNumber)
+        {
+            if (mobileNumber.Length != 11)
+                throw new Exception("طول شماره تلفن همراه صحیح نیست");
+            if (!PhoneNumber.Any(char.IsDigit))
+                throw new Exception("شماره تلفن باید عددی باشد");
+            MobileNumber = mobileNumber;
         }
+
 
         protected Customer() { }
 

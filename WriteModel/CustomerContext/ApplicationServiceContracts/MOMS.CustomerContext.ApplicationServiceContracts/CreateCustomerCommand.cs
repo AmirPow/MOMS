@@ -5,7 +5,6 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts
 {
     public class CreateCustomerCommand :Command
     {
-        public string FileNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NationalCode { get; set; }

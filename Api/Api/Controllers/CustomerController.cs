@@ -2,10 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MOMS.CustomerContext.ApplicationServiceContracts;
 using MOMS.CustomerContext.Facade.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
@@ -26,5 +22,3 @@ namespace Api.Controllers
         }
     }
 }
-
-//check git

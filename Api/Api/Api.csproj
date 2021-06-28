@@ -12,12 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Framework\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
-    <ProjectReference Include="..\..\..\..\Framework\Framework\Framework.Core\Framework.Core.csproj" />
-    <ProjectReference Include="..\..\..\..\Framework\Framework\Framework.Persistence\Framework.Persistence.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Core\Framework.Core.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\FacadeContracts\MOMS.CustomerContext.Facade.Contracts\MOMS.CustomerContext.Facade.Contracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\MOMS.CustomerContext.Configuration\MOMS.CustomerContext.Configuration.csproj" />

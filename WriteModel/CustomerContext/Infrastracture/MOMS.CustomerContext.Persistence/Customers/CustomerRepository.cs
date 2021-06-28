@@ -21,6 +21,11 @@ namespace MOMS.CustomerContext.Persistence.Customers
             Create(customer);
         }
 
+        public int GetLastFileNumber()
+        {
+            return int.Parse(_dbContext.Set<Customer>().Select(a => a.FileNumber).Max());
+        }
+
         protected override IEnumerable<Expression<Func<Customer, object>>> GetAggregateExpression()
         {
             return null;

@@ -4,4 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="kavenegar" Version="1.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\MOMS.CustomerContext.Domain\MOMS.CustomerContext.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
