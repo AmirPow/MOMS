@@ -1,10 +1,19 @@
-﻿using Framework.Core.ApplicationService;
+﻿using Framework.Core.Domain;
+using Framework.Domain;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
+namespace MOMS.DefinitionContext.Domain.Doctors
 {
-    public class CreateCustomerCommand : Command
+    public class Doctor: EntityBase , IAggregateRoot
     {
+        public Doctor()
+        {
+
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FatherName { get; set; }
@@ -13,5 +22,6 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
         public string PhoneNumber { get; set; }
         public int Gender { get; set; }
         public int MartialStatus { get; set; }
+        public DateTime RegDateTime { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MOMS.Persistence.Migrations
 {
     [DbContext(typeof(MOMSDbContext))]
-    [Migration("20210627105418_ChangeInCustomerDataTypeMapping")]
-    partial class ChangeInCustomerDataTypeMapping
+    [Migration("20210630080017_FiristInitial")]
+    partial class FiristInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,10 @@ namespace MOMS.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FatherName")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("FileNumber")
                         .IsRequired()
@@ -59,9 +63,244 @@ namespace MOMS.Persistence.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<DateTime>("RegDateTime")
+                        .HasColumnType("DateTime");
+
                     b.HasKey("Id");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Cash")
+                        .HasColumnType("Int");
+
+                    b.Property<DateTime>("PeymentDateTime")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int>("Pose")
+                        .HasColumnType("Int");
+
+                    b.Property<Guid>("ReceptionId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceptionId");
+
+                    b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Reception", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<int>("ExteraPrice")
+                        .HasColumnType("Int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("Int");
+
+                    b.Property<Guid>("TherapistId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<int>("TotalPrice")
+                        .HasColumnType("Int");
+
+                    b.Property<DateTime>("receptionDateTime")
+                        .HasColumnType("DateTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Reception");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.ReceptionDetails", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProcedureId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("ReceptionId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceptionId");
+
+                    b.ToTable("ReceptionDetails");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.ProcedureList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProcedureId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("SequencingId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SequencingId");
+
+                    b.ToTable("ProcedureList");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.Sequencing", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<DateTime>("SubmitDateTime")
+                        .HasColumnType("DateTime");
+
+                    b.Property<Guid>("TherapistId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<DateTime>("TurnDateTime")
+                        .HasColumnType("DateTime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sequencing");
+                });
+
+            modelBuilder.Entity("MOMS.DefinitionContext.Domain.Doctors.Doctor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FatherName")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("Int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("MartialStatus")
+                        .HasColumnType("Int");
+
+                    b.Property<string>("MobileNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("NationalCode")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<DateTime>("RegDateTime")
+                        .HasColumnType("DateTime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Doctor");
+                });
+
+            modelBuilder.Entity("MOMS.DefinitionContext.Domain.Procedures.Procedure", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("Int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Procedure");
+                });
+
+            modelBuilder.Entity("MOMS.DefinitionContext.Domain.Therapists.Therapist", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FatherName")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("Int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("MartialStatus")
+                        .HasColumnType("Int");
+
+                    b.Property<string>("MobileNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("NationalCode")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<DateTime>("RegDateTime")
+                        .HasColumnType("DateTime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Therapist");
                 });
 
             modelBuilder.Entity("MOMS.UserContext.Domain.ApplicationUser", b =>
@@ -260,6 +499,42 @@ namespace MOMS.Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Payment", b =>
+                {
+                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Reception", null)
+                        .WithMany("Peyments")
+                        .HasForeignKey("ReceptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Reception", b =>
+                {
+                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Customer", null)
+                        .WithMany("Receptions")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.ReceptionDetails", b =>
+                {
+                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Reception", null)
+                        .WithMany("ReceptionDetails")
+                        .HasForeignKey("ReceptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.ProcedureList", b =>
+                {
+                    b.HasOne("MOMS.CustomerContext.Domain.Sequencings.Sequencing", null)
+                        .WithMany("procedureLists")
+                        .HasForeignKey("SequencingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -309,6 +584,23 @@ namespace MOMS.Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Customer", b =>
+                {
+                    b.Navigation("Receptions");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Reception", b =>
+                {
+                    b.Navigation("Peyments");
+
+                    b.Navigation("ReceptionDetails");
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.Sequencing", b =>
+                {
+                    b.Navigation("procedureLists");
                 });
 #pragma warning restore 612, 618
         }

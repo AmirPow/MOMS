@@ -17,6 +17,7 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
             var customer = customerRepository.GetCustomerByFileNumber(command.FileNumber);
             customer.FirstName = command.FirstName;
             customer.LastName = command.LastName;
+            customer.FatherName = command.FatherName;
             customer.NationalCode = command.NationalCode;
             customer.SetMobileNumber(command.MobileNumber);
             customer.PhoneNumber = command.PhoneNumber;

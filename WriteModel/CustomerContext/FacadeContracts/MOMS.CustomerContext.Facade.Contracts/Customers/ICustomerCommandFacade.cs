@@ -8,7 +8,5 @@ namespace MOMS.CustomerContext.Facade.Contracts.Customers
         void CreateCustomer(CreateCustomerCommand command);
         void DeleteCustomer(DeleteCustomerCommand command);
         void UpdateCustomer(UpdateCustomerCommand command);
-
-
     }
 }

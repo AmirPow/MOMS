@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.DependencyInjection\framework.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Framework\Framework.Facade\Framework.Facade.csproj" />
+    <ProjectReference Include="..\..\CustomerContext\Domain\MOMS.CustomerContext.Domain\MOMS.CustomerContext.Domain.csproj" />
+    <ProjectReference Include="..\..\MOMS.Persistence\MOMS.Persistence.csproj" />
+    <ProjectReference Include="..\Infrastracture\MOMS.DefinitionContext.Persistence\MOMS.DefinitionContext.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

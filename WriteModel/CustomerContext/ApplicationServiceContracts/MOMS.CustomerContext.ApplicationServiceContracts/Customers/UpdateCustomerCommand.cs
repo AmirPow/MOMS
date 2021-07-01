@@ -12,6 +12,7 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
         public string FileNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FatherName { get; set; }
         public string NationalCode { get; set; }
         public string MobileNumber { get; set; }
         public string PhoneNumber { get; set; }

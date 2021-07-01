@@ -1,7 +1,7 @@
 ﻿using Framework.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MOMS.CustomerContext.Domain.Customers;
+using MOMS.DefinitionContext.Domain.Therapists;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,13 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MOMS.CustomerContext.Persistence.Customers.Mappings
+namespace MOMS.DefinitionContext.Persistence.Therapists
 {
-    public class CustomerMapping : EntityMappingBase<Customer>
+    public class TherapistMapping : EntityMappingBase<Therapist>
     {
-        public override void Configure(EntityTypeBuilder<Customer> builder)
+        public override void Configure(EntityTypeBuilder<Therapist> builder)
         {
-            builder.Property(a => a.FileNumber).HasMaxLength(20).IsRequired();
             builder.Property(a => a.FirstName).HasMaxLength(250).IsRequired(false);
             builder.Property(a => a.LastName).HasMaxLength(250).IsRequired();
             builder.Property(a => a.FatherName).HasMaxLength(250).IsRequired(false);

@@ -2,8 +2,6 @@
 using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Domain.Customers;
 using MOMS.CustomerContext.Domain.Customers.Services;
-using MOMS.CustomerContext.DomainService.Customers;
-using System;
 
 namespace MOMS.CustomerContext.ApplicationService.Customers
 {
@@ -25,6 +23,7 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
                 (customerRepository.GetLastFileNumber() + 1).ToString(),
                 command.FirstName,
                 command.LastName,
+                command.FatherName,
                 command.NationalCode,
                 command.MobileNumber,
                 command.PhoneNumber,

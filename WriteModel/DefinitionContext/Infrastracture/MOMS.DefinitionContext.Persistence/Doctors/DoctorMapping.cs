@@ -1,21 +1,15 @@
 ﻿using Framework.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MOMS.CustomerContext.Domain.Customers;
-using System;
-using System.Collections.Generic;
+using MOMS.DefinitionContext.Domain.Doctors;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MOMS.CustomerContext.Persistence.Customers.Mappings
+namespace MOMS.DefinitionContext.Persistence.Doctors
 {
-    public class CustomerMapping : EntityMappingBase<Customer>
+    public class DoctorMapping : EntityMappingBase<Doctor>
     {
-        public override void Configure(EntityTypeBuilder<Customer> builder)
+        public override void Configure(EntityTypeBuilder<Doctor> builder)
         {
-            builder.Property(a => a.FileNumber).HasMaxLength(20).IsRequired();
             builder.Property(a => a.FirstName).HasMaxLength(250).IsRequired(false);
             builder.Property(a => a.LastName).HasMaxLength(250).IsRequired();
             builder.Property(a => a.FatherName).HasMaxLength(250).IsRequired(false);

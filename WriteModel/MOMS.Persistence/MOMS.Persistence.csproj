@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
     <ProjectReference Include="..\CustomerContext\Infrastracture\MOMS.CustomerContext.Persistence\MOMS.CustomerContext.Persistence.csproj" />
+    <ProjectReference Include="..\DefinitionContext\Infrastracture\MOMS.DefinitionContext.Persistence\MOMS.DefinitionContext.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

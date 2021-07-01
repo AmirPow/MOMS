@@ -12,4 +12,8 @@
     <ProjectReference Include="..\..\Domain\MOMS.CustomerContext.Domain\MOMS.CustomerContext.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Sequencing\" />
+  </ItemGroup>
+
 </Project>
