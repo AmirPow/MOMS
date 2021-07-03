@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,7 +8,6 @@
     <ProjectReference Include="..\..\..\..\Framework\Framework.Core\Framework.Core.csproj" />
     <ProjectReference Include="..\..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
     <ProjectReference Include="..\..\ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts.csproj" />
-    <ProjectReference Include="..\..\DomainService\MOMS.CustomerContext.DomainService\MOMS.CustomerContext.DomainService.csproj" />
     <ProjectReference Include="..\..\Domain\MOMS.CustomerContext.Domain\MOMS.CustomerContext.Domain.csproj" />
   </ItemGroup>
 

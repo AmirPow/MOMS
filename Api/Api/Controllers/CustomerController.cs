@@ -10,10 +10,15 @@ namespace Api.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerCommandFacade customerCommandFacade;
+        private readonly IReceptionCommandFacade receptionCommandFacade;
 
-        public CustomerController(ICustomerCommandFacade customerCommandFacade)
+        public CustomerController(
+            ICustomerCommandFacade customerCommandFacade,
+            IReceptionCommandFacade receptionCommandFacade
+            )
         {
             this.customerCommandFacade = customerCommandFacade;
+            this.receptionCommandFacade = receptionCommandFacade;
         }
         [HttpPost]
         [Route("CreateCustomer")]
@@ -33,5 +38,12 @@ namespace Api.Controllers
         {
             customerCommandFacade.UpdateCustomer(UpdateCustomerCommand);
         }
+        [HttpPost]
+        [Route("AddReception")]
+        public void AddReception(AddReceptionCommand addReceptionCommand)
+        {
+            receptionCommandFacade.AddReception(addReceptionCommand);
+        }
+
     }
 }

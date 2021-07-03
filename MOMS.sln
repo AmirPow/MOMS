@@ -43,8 +43,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{30FD7E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.CustomerContext.DomainService", "WriteModel\CustomerContext\DomainService\MOMS.CustomerContext.DomainService\MOMS.CustomerContext.DomainService.csproj", "{1A022EAC-269E-4614-8867-E81C8C23E46C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.CustomerContext.ApplicationService", "WriteModel\CustomerContext\ApplicationService\MOMS.CustomerContext.ApplicationService\MOMS.CustomerContext.ApplicationService.csproj", "{5D524EBB-65ED-4F2A-9040-CB681751B890}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.CustomerContext.ApplicationServiceContracts", "WriteModel\CustomerContext\ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts.csproj", "{502A9DF5-2D7E-476B-BE7E-366F210D3ED8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.CustomerContext.Persistence", "WriteModel\CustomerContext\Infrastracture\MOMS.CustomerContext.Persistence\MOMS.CustomerContext.Persistence.csproj", "{8C3985DE-A289-4858-AEB2-C3A98E0D65BD}"
@@ -79,9 +77,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.Doma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inftrastracture", "Inftrastracture", "{C86EB97C-0ABA-418C-856C-0EE90A0230B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.DefinitionContext.Persistence", "WriteModel\DefinitionContext\Infrastracture\MOMS.DefinitionContext.Persistence\MOMS.DefinitionContext.Persistence.csproj", "{B34F206E-7829-40BF-AE96-6AE299E00874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.Persistence", "WriteModel\DefinitionContext\Infrastracture\MOMS.DefinitionContext.Persistence\MOMS.DefinitionContext.Persistence.csproj", "{B34F206E-7829-40BF-AE96-6AE299E00874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.DefinitionContext.Configuration", "WriteModel\DefinitionContext\MOMS.DefinitionContext.Configuration\MOMS.DefinitionContext.Configuration.csproj", "{83414C3A-E596-43E7-B1B8-884C12920EAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.Configuration", "WriteModel\DefinitionContext\MOMS.DefinitionContext.Configuration\MOMS.DefinitionContext.Configuration.csproj", "{83414C3A-E596-43E7-B1B8-884C12920EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.CustomerContext.ApplicationService", "WriteModel\CustomerContext\ApplicationService\MOMS.CustomerContext.ApplicationService\MOMS.CustomerContext.ApplicationService.csproj", "{8F03AD1F-5F8D-4CA6-8A63-C336D5484C91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,10 +105,6 @@ Global
 		{1A022EAC-269E-4614-8867-E81C8C23E46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A022EAC-269E-4614-8867-E81C8C23E46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A022EAC-269E-4614-8867-E81C8C23E46C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D524EBB-65ED-4F2A-9040-CB681751B890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D524EBB-65ED-4F2A-9040-CB681751B890}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D524EBB-65ED-4F2A-9040-CB681751B890}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D524EBB-65ED-4F2A-9040-CB681751B890}.Release|Any CPU.Build.0 = Release|Any CPU
 		{502A9DF5-2D7E-476B-BE7E-366F210D3ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{502A9DF5-2D7E-476B-BE7E-366F210D3ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{502A9DF5-2D7E-476B-BE7E-366F210D3ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -177,6 +173,10 @@ Global
 		{83414C3A-E596-43E7-B1B8-884C12920EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83414C3A-E596-43E7-B1B8-884C12920EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83414C3A-E596-43E7-B1B8-884C12920EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F03AD1F-5F8D-4CA6-8A63-C336D5484C91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F03AD1F-5F8D-4CA6-8A63-C336D5484C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F03AD1F-5F8D-4CA6-8A63-C336D5484C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F03AD1F-5F8D-4CA6-8A63-C336D5484C91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -198,7 +198,6 @@ Global
 		{0C6922BF-D43C-47DA-A81C-D8480744156E} = {8A4ACF08-7A3C-4945-A7F2-DCF9DF685A09}
 		{30FD7EE4-1817-491D-BEE4-C51342C4137A} = {0C6922BF-D43C-47DA-A81C-D8480744156E}
 		{1A022EAC-269E-4614-8867-E81C8C23E46C} = {60B0E667-D074-4A83-9929-8516CBA5E73D}
-		{5D524EBB-65ED-4F2A-9040-CB681751B890} = {D01726A5-1E78-4C51-B1D2-759405366A2D}
 		{502A9DF5-2D7E-476B-BE7E-366F210D3ED8} = {D01726A5-1E78-4C51-B1D2-759405366A2D}
 		{8C3985DE-A289-4858-AEB2-C3A98E0D65BD} = {49A7DE37-89A1-418D-9EB0-1E2575531B90}
 		{BCEBC2CD-0CD0-4B13-BDB5-B21E52F1CA08} = {CAEA5D3D-0521-4555-BA92-BC4359BF96B4}
@@ -218,6 +217,7 @@ Global
 		{C86EB97C-0ABA-418C-856C-0EE90A0230B7} = {0C6922BF-D43C-47DA-A81C-D8480744156E}
 		{B34F206E-7829-40BF-AE96-6AE299E00874} = {C86EB97C-0ABA-418C-856C-0EE90A0230B7}
 		{83414C3A-E596-43E7-B1B8-884C12920EAE} = {0C6922BF-D43C-47DA-A81C-D8480744156E}
+		{8F03AD1F-5F8D-4CA6-8A63-C336D5484C91} = {D01726A5-1E78-4C51-B1D2-759405366A2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27AECD83-850B-464A-9D5B-69C691DEE937}

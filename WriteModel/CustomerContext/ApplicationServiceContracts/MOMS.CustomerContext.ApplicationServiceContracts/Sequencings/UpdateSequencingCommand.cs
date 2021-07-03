@@ -9,6 +9,7 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Sequencing
 {
     public class UpdateSequencingCommand :Command
     {
+        public Guid SequencingId { get; set; }
         public Guid CustomerId { get; set; }
         public Guid DoctorId { get; set; }
         public Guid TherapistId { get; set; }

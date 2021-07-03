@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
 {
-    public class UpdateCustomerCommand :Command
+    public class UpdateCustomerCommand : Command
     {
         public string FileNumber { get; set; }
         public string FirstName { get; set; }

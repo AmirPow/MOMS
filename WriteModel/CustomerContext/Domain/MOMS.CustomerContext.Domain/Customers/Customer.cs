@@ -46,6 +46,11 @@ namespace MOMS.CustomerContext.Domain.Customers
         public DateTime RegDateTime { get; set; }
         public ICollection<Reception> Receptions { get; set; } = new HashSet<Reception>();
 
+        public void AddReception(Reception reception)
+        {
+            Receptions.Add(reception);
+        }
+
         public void SetMobileNumber(string mobileNumber)
         {
             if (mobileNumber.Length != 11)

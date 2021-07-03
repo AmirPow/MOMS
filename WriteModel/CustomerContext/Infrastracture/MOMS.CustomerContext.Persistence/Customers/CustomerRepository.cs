@@ -1,5 +1,6 @@
 ﻿using Framework.Core.Persistence;
 using Framework.Persistence;
+using Microsoft.EntityFrameworkCore;
 using MOMS.CustomerContext.Domain.Customers;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,8 @@ namespace MOMS.CustomerContext.Persistence.Customers
 
         public Customer GetCustomerById(Guid id)
         {
-            return _dbContext.Set<Customer>().SingleOrDefault(a => a.Id == id);
+            return _dbContext.Set<Customer>().Include(e=>e.Receptions)
+                .SingleOrDefault(a => a.Id == id);
         }
 
         public int GetLastFileNumber()

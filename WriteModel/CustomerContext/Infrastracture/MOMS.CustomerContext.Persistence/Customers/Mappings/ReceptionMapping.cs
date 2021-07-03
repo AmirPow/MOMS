@@ -18,7 +18,7 @@ namespace MOMS.CustomerContext.Persistence.Customers.Mappings
             builder.Property(a=>a.CustomerId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.Property(a => a.DoctorId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.Property(a => a.TherapistId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
-            builder.Property(a => a.receptionDateTime).HasColumnType(SqlDbType.DateTime.ToString()).IsRequired();
+            builder.Property(a => a.ReceptionDateTime).HasColumnType(SqlDbType.DateTime.ToString()).IsRequired();
             builder.Property(a => a.Price).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
             builder.Property(a => a.ExteraPrice).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
             builder.Property(a => a.TotalPrice).HasColumnType(SqlDbType.Int.ToString()).IsRequired();

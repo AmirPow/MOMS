@@ -1,11 +1,6 @@
 ﻿using Framework.Core.ApplicationService;
 using MOMS.CustomerContext.ApplicationServiceContracts.Sequencing;
 using MOMS.CustomerContext.Domain.Sequencings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MOMS.CustomerContext.ApplicationService.Sequencings
 {

@@ -18,7 +18,7 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
         }
         public void Execute(CreateCustomerCommand command)
         {
-
+            
             var customer = new Customer(
                 (customerRepository.GetLastFileNumber() + 1).ToString(),
                 command.FirstName,
