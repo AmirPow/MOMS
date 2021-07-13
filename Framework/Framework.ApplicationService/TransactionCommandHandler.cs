@@ -1,5 +1,6 @@
 ﻿using Framework.Core.ApplicationService;
 using Framework.Core.DependencyInjection;
+using System;
 
 namespace Framework.ApplicationService
 { 
@@ -21,9 +22,10 @@ namespace Framework.ApplicationService
                 _commandHandler.Execute(command);
                 unitOfWork.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 unitOfWork.Rollback();
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }
