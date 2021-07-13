@@ -6,7 +6,7 @@ namespace MOMS.CustomerContext.Domain.Customers
 {
     public class Reception : EntityBase
     {
-        protected Reception() { }
+        public Reception() { }
         public Reception(
             Guid customerId,
             Guid doctorId,

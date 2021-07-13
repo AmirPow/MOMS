@@ -22,9 +22,10 @@ namespace Framework.ApplicationService
                 _commandHandler.Execute(command);
                 unitOfWork.Commit();
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
                 unitOfWork.Rollback();
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }
