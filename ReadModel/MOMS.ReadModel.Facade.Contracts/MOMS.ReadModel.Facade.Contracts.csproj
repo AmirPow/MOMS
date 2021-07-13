@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\WriteModel\CustomerContext\Facade\MOMS.CustomerContext.Facade\MOMS.CustomerContext.Facade.csproj" />
+  </ItemGroup>
+
+</Project>

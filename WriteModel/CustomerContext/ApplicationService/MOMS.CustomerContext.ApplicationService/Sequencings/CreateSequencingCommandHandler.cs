@@ -14,13 +14,13 @@ namespace MOMS.CustomerContext.ApplicationService.Sequencings
         }
         public void Execute(CreateSequencingCommand command)
         {
-            var sequencing = new Sequencing(command.CustomerId,
-                command.DoctorId,
-                command.TherapistId,
-                command.TurnDateTime
-                );
-            sequencing.AddProcedureList(command.ProcedureLists);
-            sequencingRepository.CreateSequencing(sequencing);
+            //var sequencing = new Sequencing(command.CustomerId,
+            //    command.DoctorId,
+            //    command.TherapistId,
+            //    command.TurnDateTime
+            //    );
+            //sequencing.AddProcedureList(command.ProcedureLists);
+            //sequencingRepository.CreateSequencing(sequencing);
         }
     }
 }

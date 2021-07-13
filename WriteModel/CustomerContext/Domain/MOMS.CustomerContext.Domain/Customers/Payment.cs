@@ -1,14 +1,11 @@
-﻿using Framework.Domain;
+﻿ using Framework.Domain;
 using System;
 
 namespace MOMS.CustomerContext.Domain.Customers
 {
     public class Payment:EntityBase
     {
-        protected Payment()
-        {
-
-        }
+        protected Payment() { }
         public Payment(
             Guid receptionId,
             int cash,

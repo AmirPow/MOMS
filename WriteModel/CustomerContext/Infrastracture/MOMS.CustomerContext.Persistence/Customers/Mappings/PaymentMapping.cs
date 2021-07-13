@@ -10,11 +10,12 @@ namespace MOMS.CustomerContext.Persistence.Customers.Mappings
     {
         public override void Configure(EntityTypeBuilder<Payment> builder)
         {
+            Initial(builder);
             builder.Property(a => a.ReceptionId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.Property(a => a.PaymentDateTime).HasColumnType(SqlDbType.DateTime.ToString()).IsRequired();
             builder.Property(a => a.Cash).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
             builder.Property(a => a.Pose).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
-            builder.HasOne<Reception>().WithMany(a => a.Payments).HasForeignKey(x => x.ReceptionId);
+            builder.HasOne<Reception>().WithMany().HasForeignKey(e => e.ReceptionId);
         }
     }
 }

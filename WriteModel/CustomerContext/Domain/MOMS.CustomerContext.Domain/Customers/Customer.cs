@@ -8,7 +8,6 @@ namespace MOMS.CustomerContext.Domain.Customers
 {
     public class Customer : EntityBase, IAggregateRoot
     {
-
         protected Customer() { }
         public Customer(
             string fileNumber,
@@ -21,7 +20,6 @@ namespace MOMS.CustomerContext.Domain.Customers
             int gender,
             int martialStatus)
         {
-
             FileNumber = fileNumber;
             FirstName = firstName;
             LastName = lastName;
@@ -46,10 +44,7 @@ namespace MOMS.CustomerContext.Domain.Customers
         public DateTime RegDateTime { get; set; }
         public ICollection<Reception> Receptions { get; set; } = new HashSet<Reception>();
 
-        public void AddReception(Reception reception)
-        {
-            Receptions.Add(reception);
-        }
+
 
         public void SetMobileNumber(string mobileNumber)
         {

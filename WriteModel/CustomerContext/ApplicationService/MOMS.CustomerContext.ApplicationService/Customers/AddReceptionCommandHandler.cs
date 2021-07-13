@@ -26,7 +26,7 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
                 command.TotalPrice);
             newReception.AddReceptionDetail(command.ProcedureList);
             
-            customer.AddReception(newReception);
+            customer.Receptions.Add(newReception);
         }
     }
 }

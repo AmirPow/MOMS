@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Framework\Framework.Core\Framework.Core.csproj" />
     <ProjectReference Include="..\..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
   </ItemGroup>
 

@@ -15,6 +15,7 @@ namespace MOMS.DefinitionContext.Persistence.Procedures
     {
         public override void Configure(EntityTypeBuilder<Procedure> builder)
         {
+            Initial(builder);
             builder.Property(a => a.Name).HasMaxLength(250).IsRequired();
             builder.Property(a => a.Price).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
         }

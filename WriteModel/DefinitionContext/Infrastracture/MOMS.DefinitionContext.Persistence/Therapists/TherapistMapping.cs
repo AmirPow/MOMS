@@ -15,6 +15,7 @@ namespace MOMS.DefinitionContext.Persistence.Therapists
     {
         public override void Configure(EntityTypeBuilder<Therapist> builder)
         {
+            Initial(builder);
             builder.Property(a => a.FirstName).HasMaxLength(250).IsRequired(false);
             builder.Property(a => a.LastName).HasMaxLength(250).IsRequired();
             builder.Property(a => a.FatherName).HasMaxLength(250).IsRequired(false);

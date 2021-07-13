@@ -35,12 +35,6 @@ namespace MOMS.CustomerContext.Domain.Customers
             }
         }
 
-        public void AddPayment(Payment payment) 
-        {
-            Payments.Add(payment);
-        }
-
-        
         public Guid CustomerId { get; set; }
         public Guid DoctorId { get; set; }
         public Guid TherapistId { get; set; }

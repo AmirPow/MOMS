@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4" />
@@ -14,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\ReadModel\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\FacadeContracts\MOMS.CustomerContext.Facade.Contracts\MOMS.CustomerContext.Facade.Contracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\MOMS.CustomerContext.Configuration\MOMS.CustomerContext.Configuration.csproj" />

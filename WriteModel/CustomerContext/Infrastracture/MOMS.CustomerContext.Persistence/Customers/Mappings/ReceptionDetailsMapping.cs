@@ -10,6 +10,7 @@ namespace MOMS.CustomerContext.Persistence.Customers.Mappings
     {
         public override void Configure(EntityTypeBuilder<ReceptionDetails> builder)
         {
+            Initial(builder);
             builder.Property(a => a.ReceptionId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.Property(a => a.ProcedureId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.HasOne<Reception>().WithMany(a=>a.ReceptionDetails).HasForeignKey(x => x.ReceptionId).IsRequired();

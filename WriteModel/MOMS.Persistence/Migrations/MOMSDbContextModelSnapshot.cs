@@ -22,8 +22,7 @@ namespace MOMS.Persistence.Migrations
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Customer", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<string>("FatherName")
                         .HasMaxLength(250)
@@ -66,17 +65,19 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customer", "CustomerContext");
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Payment", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<int>("Cash")
                         .HasColumnType("Int");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<DateTime>("PaymentDateTime")
                         .HasColumnType("DateTime");
@@ -87,24 +88,28 @@ namespace MOMS.Persistence.Migrations
                     b.Property<Guid>("ReceptionId")
                         .HasColumnType("UniqueIdentifier");
 
+                    b.Property<Guid?>("ReceptionId1")
+                        .HasColumnType("UniqueIdentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ReceptionId");
 
-                    b.ToTable("Payment");
+                    b.HasIndex("ReceptionId1");
+
+                    b.ToTable("Payment", "CustomerContext");
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Reception", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("UniqueIdentifier");
 
                     b.Property<int>("Discount")
-                        .HasColumnType("int");
+                        .HasColumnType("Int");
 
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("UniqueIdentifier");
@@ -128,14 +133,13 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Reception");
+                    b.ToTable("Reception", "CustomerContext");
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.ReceptionDetails", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<Guid>("ProcedureId")
                         .HasColumnType("UniqueIdentifier");
@@ -147,14 +151,13 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasIndex("ReceptionId");
 
-                    b.ToTable("ReceptionDetails");
+                    b.ToTable("ReceptionDetails", "CustomerContext");
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.ProcedureList", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<Guid>("ProcedureId")
                         .HasColumnType("UniqueIdentifier");
@@ -166,14 +169,13 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasIndex("SequencingId");
 
-                    b.ToTable("ProcedureList");
+                    b.ToTable("ProcedureList", "CustomerContext");
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.Sequencing", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("UniqueIdentifier");
@@ -192,14 +194,15 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sequencing");
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Sequencing", "CustomerContext");
                 });
 
             modelBuilder.Entity("MOMS.DefinitionContext.Domain.Doctors.Doctor", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<string>("FatherName")
                         .HasMaxLength(250)
@@ -237,14 +240,13 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doctor");
+                    b.ToTable("Doctor", "DefinitionContext");
                 });
 
             modelBuilder.Entity("MOMS.DefinitionContext.Domain.Procedures.Procedure", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -256,14 +258,13 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Procedure");
+                    b.ToTable("Procedure", "DefinitionContext");
                 });
 
             modelBuilder.Entity("MOMS.DefinitionContext.Domain.Therapists.Therapist", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<string>("FatherName")
                         .HasMaxLength(250)
@@ -301,7 +302,7 @@ namespace MOMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Therapist");
+                    b.ToTable("Therapist", "DefinitionContext");
                 });
 
             modelBuilder.Entity("MOMS.UserContext.Domain.ApplicationUser", b =>
@@ -503,10 +504,14 @@ namespace MOMS.Persistence.Migrations
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Payment", b =>
                 {
                     b.HasOne("MOMS.CustomerContext.Domain.Customers.Reception", null)
-                        .WithMany("Payments")
+                        .WithMany()
                         .HasForeignKey("ReceptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Reception", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("ReceptionId1");
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Reception", b =>
@@ -532,6 +537,15 @@ namespace MOMS.Persistence.Migrations
                     b.HasOne("MOMS.CustomerContext.Domain.Sequencings.Sequencing", null)
                         .WithMany("ProcedureLists")
                         .HasForeignKey("SequencingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MOMS.CustomerContext.Domain.Sequencings.Sequencing", b =>
+                {
+                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

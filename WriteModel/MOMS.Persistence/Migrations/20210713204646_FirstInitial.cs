@@ -3,10 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MOMS.Persistence.Migrations
 {
-    public partial class FiristInitial : Migration
+    public partial class FirstInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "CustomerContext");
+
+            migrationBuilder.EnsureSchema(
+                name: "DefinitionContext");
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -48,9 +54,10 @@ namespace MOMS.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Customer",
+                schema: "CustomerContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     FileNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
@@ -69,9 +76,10 @@ namespace MOMS.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Doctor",
+                schema: "DefinitionContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     FatherName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
@@ -88,10 +96,25 @@ namespace MOMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Therapist",
+                name: "Procedure",
+                schema: "DefinitionContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Price = table.Column<int>(type: "Int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Procedure", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Therapist",
+                schema: "DefinitionContext",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     FatherName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
@@ -106,56 +129,6 @@ namespace MOMS.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Therapist", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Procedure",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Price = table.Column<int>(type: "Int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Procedure", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sequencing",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CustomerId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
-                    DoctorId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
-                    TherapistId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
-                    SubmitDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
-                    TurnDateTime = table.Column<DateTime>(type: "DateTime", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sequencing", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Sequencing_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-
-                    table.ForeignKey(
-                        name: "FK_Sequencing_Doctor_DoctorId",
-                        column: x => x.DoctorId,
-                        principalTable: "Doctor",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sequencing_Therapist_TherapistId",
-                        column: x => x.TherapistId,
-                        principalTable: "Therapist",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -265,15 +238,17 @@ namespace MOMS.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Reception",
+                schema: "CustomerContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     CustomerId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     DoctorId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     TherapistId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
-                    receptionDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    ReceptionDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
                     Price = table.Column<int>(type: "Int", nullable: false),
                     ExteraPrice = table.Column<int>(type: "Int", nullable: false),
+                    Discount = table.Column<int>(type: "Int", nullable: false),
                     TotalPrice = table.Column<int>(type: "Int", nullable: false)
                 },
                 constraints: table =>
@@ -282,17 +257,20 @@ namespace MOMS.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Reception_Customer_CustomerId",
                         column: x => x.CustomerId,
+                        principalSchema: "CustomerContext",
                         principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reception_Doctor_DoctorId",
+                        principalSchema: "DefinitionContext",
                         column: x => x.DoctorId,
                         principalTable: "Doctor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reception_Therapist_TherapistId",
+                        principalSchema: "DefinitionContext",
                         column: x => x.TherapistId,
                         principalTable: "Therapist",
                         principalColumn: "Id",
@@ -300,39 +278,53 @@ namespace MOMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProcedureList",
+                name: "Sequencing",
+                schema: "CustomerContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SequencingId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
-                    ProcedureId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    TherapistId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    SubmitDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    TurnDateTime = table.Column<DateTime>(type: "DateTime", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProcedureList", x => x.Id);
+                    table.PrimaryKey("PK_Sequencing", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProcedureList_Sequencing_SequencingId",
-                        column: x => x.SequencingId,
-                        principalTable: "Sequencing",
+                        name: "FK_Sequencing_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalSchema: "CustomerContext",
+                        principalTable: "Customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProcedureList_Procedure_ProcedureId",
-                        column: x => x.ProcedureId,
-                        principalTable: "Procedure",
+                        name: "FK_Sequencing_Doctor_DoctorId",
+                        column: x => x.DoctorId,
+                        principalSchema: "DefinitionContext",
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sequencing_Therapist_TherapistId",
+                        column: x => x.TherapistId,
+                        principalSchema: "DefinitionContext",
+                        principalTable: "Therapist",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Payment",
+                schema: "CustomerContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     ReceptionId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
-                    PeymentDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    PaymentDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
                     Cash = table.Column<int>(type: "Int", nullable: false),
-                    Pose = table.Column<int>(type: "Int", nullable: false)
+                    Pose = table.Column<int>(type: "Int", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -340,6 +332,7 @@ namespace MOMS.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Payment_Reception_ReceptionId",
                         column: x => x.ReceptionId,
+                        principalSchema: "CustomerContext",
                         principalTable: "Reception",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -347,9 +340,10 @@ namespace MOMS.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ReceptionDetails",
+                schema: "CustomerContext",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     ReceptionId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     ProcedureId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false)
                 },
@@ -359,14 +353,44 @@ namespace MOMS.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_ReceptionDetails_Reception_ReceptionId",
                         column: x => x.ReceptionId,
+                        principalSchema: "CustomerContext",
                         principalTable: "Reception",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ReceptionDetails_Procedure_ProcedureId",
                         column: x => x.ProcedureId,
-                        principalTable:"Procedure",
-                        principalColumn:"Id",
+                        principalSchema: "DefinitionContext",
+                        principalTable: "Procedure",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProcedureList",
+                schema: "CustomerContext",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    SequencingId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    ProcedureId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProcedureList", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProcedureList_Sequencing_SequencingId",
+                        column: x => x.SequencingId,
+                        principalSchema: "CustomerContext",
+                        principalTable: "Sequencing",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProcedureList_Procedure_ProcedureId",
+                        column: x => x.ProcedureId,
+                        principalSchema: "DefinitionContext",
+                        principalTable: "Procedure",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -409,62 +433,57 @@ namespace MOMS.Persistence.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-
-            migrationBuilder.CreateIndex(
-                name: "FK_Sequencing_CustomerId",
-                table: "Sequencing",
-                column: "CustomerId");//--this
-            migrationBuilder.CreateIndex(
-                name: "FK_Sequencing_DoctorId",
-                table: "Sequencing",
-                column: "DoctorId");//--this
-            migrationBuilder.CreateIndex(
-                name: "FK_Sequencing_TherapistId",
-                table: "Sequencing",
-                column: "TherapistId");//--this
-
-
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_ReceptionId",
+                schema: "CustomerContext",
                 table: "Payment",
                 column: "ReceptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProcedureList_SequencingId",
+                schema: "CustomerContext",
                 table: "ProcedureList",
                 column: "SequencingId");
             migrationBuilder.CreateIndex(
                 name: "IX_ProcedureList_ProcedureId",
+                schema: "CustomerContext",
                 table: "ProcedureList",
                 column: "ProcedureId");//--this
 
-
-
             migrationBuilder.CreateIndex(
                 name: "IX_Reception_CustomerId",
+                schema: "CustomerContext",
                 table: "Reception",
                 column: "CustomerId");
             migrationBuilder.CreateIndex(
                 name: "IX_Reception_DoctorId",
+                schema: "CustomerContext",
                 table: "Reception",
                 column: "DoctorId"
                 );//--this
             migrationBuilder.CreateIndex(
                 name: "IX_Reception_TherapistId",
+                schema: "CustomerContext",
                 table: "Reception",
                 column: "TherapistId"
                 );//--this
 
-
             migrationBuilder.CreateIndex(
                 name: "IX_ReceptionDetails_ReceptionId",
+                schema: "CustomerContext",
                 table: "ReceptionDetails",
                 column: "ReceptionId");
-
             migrationBuilder.CreateIndex(
                  name: "IX_ReceptionDetails_ProcedureId",
+                 schema: "CustomerContext",
                  table: "ReceptionDetails",
                  column: "ProcedureId");//--this
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sequencing_CustomerId",
+                schema: "CustomerContext",
+                table: "Sequencing",
+                column: "CustomerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -485,22 +504,28 @@ namespace MOMS.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Doctor");
+                name: "Doctor",
+                schema: "DefinitionContext");
 
             migrationBuilder.DropTable(
-                name: "Payment");
+                name: "Payment",
+                schema: "CustomerContext");
 
             migrationBuilder.DropTable(
-                name: "Procedure");
+                name: "Procedure",
+                schema: "DefinitionContext");
 
             migrationBuilder.DropTable(
-                name: "ProcedureList");
+                name: "ProcedureList",
+                schema: "CustomerContext");
 
             migrationBuilder.DropTable(
-                name: "ReceptionDetails");
+                name: "ReceptionDetails",
+                schema: "CustomerContext");
 
             migrationBuilder.DropTable(
-                name: "Therapist");
+                name: "Therapist",
+                schema: "DefinitionContext");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -509,13 +534,16 @@ namespace MOMS.Persistence.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Sequencing");
+                name: "Sequencing",
+                schema: "CustomerContext");
 
             migrationBuilder.DropTable(
-                name: "Reception");
+                name: "Reception",
+                schema: "CustomerContext");
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: "Customer",
+                schema: "CustomerContext");
         }
     }
 }

@@ -11,9 +11,8 @@ namespace MOMS.CustomerContext.Persistence.Customers
 {
     public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
     {
-        public CustomerRepository(IDbContext dbContext) :base (dbContext)
+        public CustomerRepository(IDbContext dbContext) : base(dbContext)
         {
-
         }
         public void CreateCustomer(Customer customer)
         {
@@ -37,8 +36,11 @@ namespace MOMS.CustomerContext.Persistence.Customers
 
         public Customer GetCustomerById(Guid id)
         {
-            return _dbContext.Set<Customer>().Include(e=>e.Receptions)
+            return _dbContext.Set<Customer>()
+                .Include(e => e.Receptions)
+                .ThenInclude(e => e.ReceptionDetails)
                 .SingleOrDefault(a => a.Id == id);
+                
         }
 
         public int GetLastFileNumber()

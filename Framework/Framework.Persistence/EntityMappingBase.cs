@@ -14,9 +14,9 @@ namespace Framework.Persistence
         protected void Initial(EntityTypeBuilder<TEntity> builder)
         {
             builder.Property(c => c.Id)
-                .HasColumnType(nameof(SqlDbType.UniqueIdentifier))
+                .ValueGeneratedNever()
                 .IsRequired()
-                .ValueGeneratedNever();
+                .HasColumnType(SqlDbType.UniqueIdentifier.ToString());
             builder.HasKey(c => c.Id);
             builder.ToTable(typeof(TEntity).Name, typeof(TEntity).Namespace?.Split('.')[1]);
         }

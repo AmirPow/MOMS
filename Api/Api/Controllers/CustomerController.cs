@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Facade.Contracts.Customers;
+using MOMS.ReadModel.Facade.Contracts.Customers;
+using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
 
 namespace Api.Controllers
 {
@@ -11,14 +13,17 @@ namespace Api.Controllers
     {
         private readonly ICustomerCommandFacade customerCommandFacade;
         private readonly IReceptionCommandFacade receptionCommandFacade;
+        //private readonly ICustomerQueryFacade customerQueryFacade;
 
         public CustomerController(
             ICustomerCommandFacade customerCommandFacade,
             IReceptionCommandFacade receptionCommandFacade
+            //ICustomerQueryFacade customerQueryFacade
             )
         {
             this.customerCommandFacade = customerCommandFacade;
             this.receptionCommandFacade = receptionCommandFacade;
+            //this.customerQueryFacade = customerQueryFacade;
         }
         [HttpPost]
         [Route("CreateCustomer")]
@@ -26,13 +31,13 @@ namespace Api.Controllers
         {
             customerCommandFacade.CreateCustomer(createCustomerCommand);
         }
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteCustomer")]
         public void Delete(DeleteCustomerCommand deleteCustomerCommand)
         {
             customerCommandFacade.DeleteCustomer(deleteCustomerCommand);
         }
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateCustomer")]
         public void Update(UpdateCustomerCommand UpdateCustomerCommand)
         {
@@ -44,6 +49,12 @@ namespace Api.Controllers
         {
             receptionCommandFacade.AddReception(addReceptionCommand);
         }
-
+        //[HttpGet]
+        //[Route("GetAll")]
+        //public ActionResult<string> GetAllCustomers ()
+        //{
+        //    var a = customerQueryFacade.GetAll();
+        //    return Ok(a);
+        //}
     }
 }

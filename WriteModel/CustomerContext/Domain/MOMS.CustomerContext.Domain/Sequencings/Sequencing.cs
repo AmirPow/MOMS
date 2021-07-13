@@ -2,18 +2,12 @@
 using Framework.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MOMS.CustomerContext.Domain.Sequencings
 {
     public class Sequencing : EntityBase , IAggregateRoot
     {
-        protected Sequencing()
-        {
-
-        }
+        protected Sequencing(){}
         public Sequencing(Guid customerId,
             Guid doctorId,
             Guid therapistId,
