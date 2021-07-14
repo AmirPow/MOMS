@@ -55,7 +55,7 @@ namespace Api.Controllers
         [Route("GetAll")]
         public IList<CustomerDto> GetAllCustomers()
         {
-           return customerQueryFacade.GetAll();
+            return customerQueryFacade.GetAll();
         }
     }
 }

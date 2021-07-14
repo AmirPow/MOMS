@@ -9,6 +9,7 @@ namespace MOMS.ReadModel.DataBase.Models
     {
         public Reception()
         {
+            Payments = new HashSet<Payment>();
             ReceptionDetails = new HashSet<ReceptionDetail>();
         }
 
@@ -25,6 +26,7 @@ namespace MOMS.ReadModel.DataBase.Models
         public virtual Customer Customer { get; set; }
         public virtual Doctor Doctor { get; set; }
         public virtual Therapist Therapist { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<ReceptionDetail> ReceptionDetails { get; set; }
     }
 }

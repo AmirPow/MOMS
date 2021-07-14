@@ -1,4 +1,4 @@
-﻿using MOMS.ReadModel.DataBase;
+﻿
 using MOMS.ReadModel.DataBase.Models;
 using MOMS.ReadModel.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
@@ -24,11 +24,11 @@ namespace MOMS.ReadModel.Facade.Customers
                     select new CustomerDto()
                     {
                         FileNumber = customer.FileNumber,
-                        FullName = customer.FirstName + " " + customer.LastName , 
-                        MobileNumber = customer.MobileNumber , 
-                        NationalCode = customer.NationalCode , 
-                        
-                    }).ToList();             
+                        FullName = customer.FirstName + " " + customer.LastName,
+                        MobileNumber = customer.MobileNumber,
+                        NationalCode = customer.NationalCode,
+
+                    }).ToList();
         }
     }
 }

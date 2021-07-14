@@ -10,6 +10,7 @@ namespace MOMS.ReadModel.DataBase.Models
         public Customer()
         {
             Receptions = new HashSet<Reception>();
+            Sequencings = new HashSet<Sequencing>();
         }
 
         public Guid Id { get; set; }
@@ -25,5 +26,6 @@ namespace MOMS.ReadModel.DataBase.Models
         public DateTime RegDateTime { get; set; }
 
         public virtual ICollection<Reception> Receptions { get; set; }
+        public virtual ICollection<Sequencing> Sequencings { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using MOMS.ReadModel.DataBase.Models;
 
 #nullable disable
 
@@ -27,9 +26,12 @@ namespace MOMS.ReadModel.DataBase.Models
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Procedure> Procedures { get; set; }
+        public virtual DbSet<ProcedureList> ProcedureLists { get; set; }
         public virtual DbSet<Reception> Receptions { get; set; }
         public virtual DbSet<ReceptionDetail> ReceptionDetails { get; set; }
+        public virtual DbSet<Sequencing> Sequencings { get; set; }
         public virtual DbSet<Therapist> Therapists { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -37,7 +39,7 @@ namespace MOMS.ReadModel.DataBase.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true");
+                optionsBuilder.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true;");
             }
         }
 
@@ -134,7 +136,7 @@ namespace MOMS.ReadModel.DataBase.Models
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.ToTable("Customer" , "CustomerContext");
+                entity.ToTable("Customer", "CustomerContext");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -161,7 +163,7 @@ namespace MOMS.ReadModel.DataBase.Models
 
             modelBuilder.Entity<Doctor>(entity =>
             {
-                entity.ToTable("Doctor");
+                entity.ToTable("Doctor", "DefinitionContext");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -182,9 +184,24 @@ namespace MOMS.ReadModel.DataBase.Models
                 entity.Property(e => e.RegDateTime).HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<Payment>(entity =>
+            {
+                entity.ToTable("Payment", "CustomerContext");
+
+                entity.HasIndex(e => e.ReceptionId, "IX_Payment_ReceptionId");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.PaymentDateTime).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Reception)
+                    .WithMany(p => p.Payments)
+                    .HasForeignKey(d => d.ReceptionId);
+            });
+
             modelBuilder.Entity<Procedure>(entity =>
             {
-                entity.ToTable("Procedure");
+                entity.ToTable("Procedure", "DefinitionContext");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -193,11 +210,34 @@ namespace MOMS.ReadModel.DataBase.Models
                     .HasMaxLength(250);
             });
 
+            modelBuilder.Entity<ProcedureList>(entity =>
+            {
+                entity.ToTable("ProcedureList", "CustomerContext");
+
+                entity.HasIndex(e => e.ProcedureId, "IX_ProcedureList_ProcedureId");
+
+                entity.HasIndex(e => e.SequencingId, "IX_ProcedureList_SequencingId");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Procedure)
+                    .WithMany(p => p.ProcedureLists)
+                    .HasForeignKey(d => d.ProcedureId);
+
+                entity.HasOne(d => d.Sequencing)
+                    .WithMany(p => p.ProcedureLists)
+                    .HasForeignKey(d => d.SequencingId);
+            });
+
             modelBuilder.Entity<Reception>(entity =>
             {
-                entity.ToTable("Reception");
+                entity.ToTable("Reception", "CustomerContext");
 
                 entity.HasIndex(e => e.CustomerId, "IX_Reception_CustomerId");
+
+                entity.HasIndex(e => e.DoctorId, "IX_Reception_DoctorId");
+
+                entity.HasIndex(e => e.TherapistId, "IX_Reception_TherapistId");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -218,18 +258,51 @@ namespace MOMS.ReadModel.DataBase.Models
 
             modelBuilder.Entity<ReceptionDetail>(entity =>
             {
+                entity.ToTable("ReceptionDetails", "CustomerContext");
+
+                entity.HasIndex(e => e.ProcedureId, "IX_ReceptionDetails_ProcedureId");
+
                 entity.HasIndex(e => e.ReceptionId, "IX_ReceptionDetails_ReceptionId");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.HasOne(d => d.Procedure)
+                    .WithMany(p => p.ReceptionDetails)
+                    .HasForeignKey(d => d.ProcedureId);
 
                 entity.HasOne(d => d.Reception)
                     .WithMany(p => p.ReceptionDetails)
                     .HasForeignKey(d => d.ReceptionId);
             });
 
+            modelBuilder.Entity<Sequencing>(entity =>
+            {
+                entity.ToTable("Sequencing", "CustomerContext");
+
+                entity.HasIndex(e => e.CustomerId, "IX_Sequencing_CustomerId");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.SubmitDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.TurnDateTime).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Sequencings)
+                    .HasForeignKey(d => d.CustomerId);
+
+                entity.HasOne(d => d.Doctor)
+                    .WithMany(p => p.Sequencings)
+                    .HasForeignKey(d => d.DoctorId);
+
+                entity.HasOne(d => d.Therapist)
+                    .WithMany(p => p.Sequencings)
+                    .HasForeignKey(d => d.TherapistId);
+            });
+
             modelBuilder.Entity<Therapist>(entity =>
             {
-                entity.ToTable("Therapist");
+                entity.ToTable("Therapist", "DefinitionContext");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
