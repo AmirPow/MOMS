@@ -1,4 +1,5 @@
 ﻿using MOMS.ReadModel.DataBase;
+using MOMS.ReadModel.DataBase.Models;
 using MOMS.ReadModel.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
 using System;
@@ -20,11 +21,13 @@ namespace MOMS.ReadModel.Facade.Customers
         public List<CustomerDto> GetAll()
         {
             return (from customer in context.Customers
-                    select new CustomerDto
+                    select new CustomerDto()
                     {
                         FileNumber = customer.FileNumber,
-                        FirstName = customer.FirstName,
-                        MobileNumber = customer.MobileNumber
+                        FullName = customer.FirstName + " " + customer.LastName , 
+                        MobileNumber = customer.MobileNumber , 
+                        NationalCode = customer.NationalCode , 
+                        
                     }).ToList();             
         }
     }

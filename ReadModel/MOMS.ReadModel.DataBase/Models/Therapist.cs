@@ -3,17 +3,16 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace MOMS.ReadModel.DataBase
+namespace MOMS.ReadModel.DataBase.Models
 {
-    public partial class Customer
+    public partial class Therapist
     {
-        public Customer()
+        public Therapist()
         {
             Receptions = new HashSet<Reception>();
         }
 
         public Guid Id { get; set; }
-        public string FileNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FatherName { get; set; }

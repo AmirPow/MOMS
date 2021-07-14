@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Framework.DependencyInjection\framework.DependencyInjection.csproj" />
     <ProjectReference Include="..\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
     <ProjectReference Include="..\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
   </ItemGroup>

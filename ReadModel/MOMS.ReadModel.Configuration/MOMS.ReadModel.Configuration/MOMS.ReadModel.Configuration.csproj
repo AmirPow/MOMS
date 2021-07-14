@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.DependencyInjection\framework.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
+    <ProjectReference Include="..\..\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
+    <ProjectReference Include="..\..\MOMS.ReadModel.Facade\MOMS.ReadModel.Facade.csproj" />
+  </ItemGroup>
+
+</Project>

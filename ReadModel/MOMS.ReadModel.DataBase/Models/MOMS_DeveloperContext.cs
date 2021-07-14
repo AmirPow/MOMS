@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MOMS.ReadModel.DataBase.Models;
 
 #nullable disable
 
-namespace MOMS.ReadModel.DataBase
+namespace MOMS.ReadModel.DataBase.Models
 {
     public partial class MOMS_DeveloperContext : DbContext
     {
@@ -133,7 +134,7 @@ namespace MOMS.ReadModel.DataBase
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.ToTable("Customer");
+                entity.ToTable("Customer" , "CustomerContext");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 

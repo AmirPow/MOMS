@@ -33,6 +33,8 @@ namespace framework.DependencyInjection
            RegisterTransient<IHandler>();
            RegisterTransient<IDomainService>();
            RegisterTransient<IQueryFacade>();
+
+       
         }
 
        private void RegisterFramework()

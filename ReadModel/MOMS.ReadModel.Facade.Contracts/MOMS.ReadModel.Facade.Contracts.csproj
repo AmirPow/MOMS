@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Framework.Core\Framework.Core.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\Facade\MOMS.CustomerContext.Facade\MOMS.CustomerContext.Facade.csproj" />
+    <ProjectReference Include="..\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
   </ItemGroup>
 
 </Project>

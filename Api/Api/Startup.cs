@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MOMS.Persistence;
+using MOMS.ReadModel.DataBase;
+using MOMS.ReadModel.DataBase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,11 +45,23 @@ namespace Api
             {
                 registrar.Register(services, assemblyDiscovery); ;
             }
+
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<IDbContext, MOMSDbContext>(op =>
             {
                 op.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true;");
 
             });
+
+            services.AddDbContext<MOMS_DeveloperContext>(op =>
+            {
+                op.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                op.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true;");
+            });
+
+
+
 
 
             services.AddSwaggerGen(c =>

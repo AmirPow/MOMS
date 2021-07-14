@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MOMS.ReadModel.DataBase.Models;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
-namespace MOMS.ReadModel.DataBase
+namespace MOMS.ReadModel.DataBase.Models
 {
     public partial class AspNetUserRole
     {
