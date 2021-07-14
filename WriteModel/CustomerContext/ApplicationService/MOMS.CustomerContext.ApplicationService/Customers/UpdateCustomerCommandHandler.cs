@@ -14,7 +14,7 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
         }
         public void Execute(UpdateCustomerCommand command)
         {
-            var customer = customerRepository.GetCustomerByFileNumber(command.FileNumber);
+            var customer = customerRepository.GetCustomerById(command.CustomerId);
             customer.FirstName = command.FirstName;
             customer.LastName = command.LastName;
             customer.FatherName = command.FatherName;

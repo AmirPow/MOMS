@@ -9,6 +9,7 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
 {
     public class UpdateCustomerCommand : Command
     {
+        public Guid CustomerId { get; set; }
         public string FileNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

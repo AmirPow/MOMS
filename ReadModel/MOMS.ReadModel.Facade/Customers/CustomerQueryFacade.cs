@@ -18,17 +18,28 @@ namespace MOMS.ReadModel.Facade.Customers
         {
             this.context = context;
         }
-        public List<CustomerDto> GetAll()
+        public List<CustomerDto> GetAll(string keyword)
         {
-            return (from customer in context.Customers
-                    select new CustomerDto()
-                    {
-                        FileNumber = customer.FileNumber,
-                        FullName = customer.FirstName + " " + customer.LastName,
-                        MobileNumber = customer.MobileNumber,
-                        NationalCode = customer.NationalCode,
+            var query = context.Customers.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(keyword))
+                query = query.Where(c => ((c.FirstName +" "+ c.LastName).Contains( keyword)) || (c.NationalCode.Contains(keyword)) || (c.MobileNumber.Contains(keyword)));
 
-                    }).ToList();
+            return query.Select(c => new CustomerDto()
+            {
+                CustomerId=c.Id,
+                FileNumber = c.FileNumber,
+                FirstName=c.FirstName , 
+                LastName=c.LastName,
+                FullName = c.FirstName + " " + c.LastName,
+                MobileNumber = c.MobileNumber,
+                NationalCode = c.NationalCode,
+                RegDateTime = c.RegDateTime,
+                Gender = c.Gender,
+                MartialStatus = c.MartialStatus,
+                FatherName = c.FatherName , 
+                PhoneNumber=c.PhoneNumber
+            }).OrderByDescending(C=>C.RegDateTime).ToList();
+
         }
     }
 }
