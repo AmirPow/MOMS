@@ -4,6 +4,8 @@ using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
+using MOMS.ReadModel.Facade.Contracts.Sequencing;
+using MOMS.ReadModel.Facade.Contracts.Sequencing.DataContracts;
 using System.Collections.Generic;
 
 namespace Api.Controllers
@@ -14,12 +16,12 @@ namespace Api.Controllers
     {
         private readonly ICustomerCommandFacade customerCommandFacade;
         private readonly IReceptionCommandFacade receptionCommandFacade;
-        private readonly ICustomerQueryFacade customerQueryFacade;
+        private readonly ISequencingrQueryFacade customerQueryFacade;
 
         public CustomerController(
             ICustomerCommandFacade customerCommandFacade,
             IReceptionCommandFacade receptionCommandFacade,
-            ICustomerQueryFacade customerQueryFacade
+            ISequencingrQueryFacade customerQueryFacade
             )
         {
             this.customerCommandFacade = customerCommandFacade;
@@ -53,7 +55,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public IList<CustomerDto> GetAllCustomers(string keyword)
+        public IList<SequencingDto> GetAllCustomers(string keyword)
         {
             return customerQueryFacade.GetAll(keyword);
         }

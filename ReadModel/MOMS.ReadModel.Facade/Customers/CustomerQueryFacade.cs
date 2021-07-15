@@ -2,6 +2,8 @@
 using MOMS.ReadModel.DataBase.Models;
 using MOMS.ReadModel.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
+using MOMS.ReadModel.Facade.Contracts.Sequencing;
+using MOMS.ReadModel.Facade.Contracts.Sequencing.DataContracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

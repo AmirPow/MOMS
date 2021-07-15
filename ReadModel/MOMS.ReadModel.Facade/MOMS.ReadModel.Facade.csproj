@@ -9,4 +9,11 @@
     <ProjectReference Include="..\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Doctors\" />
+    <Folder Include="Therapists\" />
+    <Folder Include="Procedures\" />
+    <Folder Include="Sequencing\" />
+  </ItemGroup>
+
 </Project>

@@ -10,4 +10,10 @@
     <ProjectReference Include="..\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Doctors\" />
+    <Folder Include="Procedures\" />
+    <Folder Include="Therapists\" />
+  </ItemGroup>
+
 </Project>
