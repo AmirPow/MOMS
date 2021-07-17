@@ -140,7 +140,7 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
- 
+
         }
     }
 }

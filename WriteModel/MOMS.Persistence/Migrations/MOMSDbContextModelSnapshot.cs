@@ -88,14 +88,11 @@ namespace MOMS.Persistence.Migrations
                     b.Property<Guid>("ReceptionId")
                         .HasColumnType("UniqueIdentifier");
 
-                    b.Property<Guid?>("ReceptionId1")
-                        .HasColumnType("UniqueIdentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ReceptionId");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("ReceptionId1");
+                    b.HasIndex("ReceptionId");
 
                     b.ToTable("Payment", "CustomerContext");
                 });
@@ -503,15 +500,17 @@ namespace MOMS.Persistence.Migrations
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Payment", b =>
                 {
-                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Reception", null)
+                    b.HasOne("MOMS.CustomerContext.Domain.Customers.Customer", null)
                         .WithMany()
-                        .HasForeignKey("ReceptionId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MOMS.CustomerContext.Domain.Customers.Reception", null)
                         .WithMany("Payments")
-                        .HasForeignKey("ReceptionId1");
+                        .HasForeignKey("ReceptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MOMS.CustomerContext.Domain.Customers.Reception", b =>

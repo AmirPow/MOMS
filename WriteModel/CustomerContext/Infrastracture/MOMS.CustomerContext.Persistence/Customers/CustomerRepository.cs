@@ -31,7 +31,12 @@ namespace MOMS.CustomerContext.Persistence.Customers
 
         public Customer GetCustomerByFileNumber(string fileNumber)
         {
-            return _dbContext.Set<Customer>().SingleOrDefault(a => a.FileNumber == fileNumber);
+            return _dbContext.Set<Customer>()
+                .Include(e => e.Receptions)
+                .ThenInclude(e => e.ReceptionDetails)
+                .Include(e => e.Receptions)
+                .ThenInclude(e => e.Payments)
+                .SingleOrDefault(a => a.FileNumber == fileNumber);
         }
 
         public Customer GetCustomerById(Guid id)
@@ -39,6 +44,8 @@ namespace MOMS.CustomerContext.Persistence.Customers
             return _dbContext.Set<Customer>()
                 .Include(e => e.Receptions)
                 .ThenInclude(e => e.ReceptionDetails)
+                .Include(e=>e.Receptions)
+                .ThenInclude(e=>e.Payments)
                 .SingleOrDefault(a => a.Id == id);
                 
         }

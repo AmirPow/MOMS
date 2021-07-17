@@ -4,6 +4,7 @@ using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
+using MOMS.ReadModel.Facade.Contracts.Definitions.DataContracts;
 using System.Collections.Generic;
 
 namespace Api.Controllers
@@ -15,16 +16,19 @@ namespace Api.Controllers
         private readonly ICustomerCommandFacade customerCommandFacade;
         private readonly IReceptionCommandFacade receptionCommandFacade;
         private readonly ICustomerQueryFacade customerQueryFacade;
+        private readonly IPaymentCommandFacade paymentCommandFacade;
 
         public CustomerController(
             ICustomerCommandFacade customerCommandFacade,
             IReceptionCommandFacade receptionCommandFacade,
-            ICustomerQueryFacade customerQueryFacade
+            ICustomerQueryFacade customerQueryFacade,
+            IPaymentCommandFacade  paymentCommandFacade
             )
         {
             this.customerCommandFacade = customerCommandFacade;
             this.receptionCommandFacade = receptionCommandFacade;
             this.customerQueryFacade = customerQueryFacade;
+            this.paymentCommandFacade = paymentCommandFacade;
         }
         [HttpPost]
         [Route("CreateCustomer")]
@@ -50,6 +54,12 @@ namespace Api.Controllers
         {
             receptionCommandFacade.AddReception(addReceptionCommand);
         }
+        [HttpPost]
+        [Route("AddPayment")]
+        public void AddPayment(AddPaymentCommand command)
+        {
+            paymentCommandFacade.AddPayment(command);
+        }
 
         [HttpGet]
         [Route("GetAll")]
@@ -57,5 +67,6 @@ namespace Api.Controllers
         {
             return customerQueryFacade.GetAll();
         }
+
     }
 }

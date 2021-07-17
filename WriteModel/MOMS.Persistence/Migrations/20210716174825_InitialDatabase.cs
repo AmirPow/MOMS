@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MOMS.Persistence.Migrations
 {
-    public partial class FirstInitial : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -263,15 +263,15 @@ namespace MOMS.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reception_Doctor_DoctorId",
-                        principalSchema: "DefinitionContext",
                         column: x => x.DoctorId,
+                        principalSchema: "DefinitionContext",
                         principalTable: "Doctor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reception_Therapist_TherapistId",
-                        principalSchema: "DefinitionContext",
                         column: x => x.TherapistId,
+                        principalSchema: "DefinitionContext",
                         principalTable: "Therapist",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -313,6 +313,7 @@ namespace MOMS.Persistence.Migrations
                         principalTable: "Therapist",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+
                 });
 
             migrationBuilder.CreateTable(
@@ -324,7 +325,7 @@ namespace MOMS.Persistence.Migrations
                     ReceptionId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     PaymentDateTime = table.Column<DateTime>(type: "DateTime", nullable: false),
                     Cash = table.Column<int>(type: "Int", nullable: false),
-                    Pose = table.Column<int>(type: "Int", nullable: false),
+                    Pose = table.Column<int>(type: "Int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -433,6 +434,7 @@ namespace MOMS.Persistence.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
+
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_ReceptionId",
                 schema: "CustomerContext",
@@ -445,10 +447,10 @@ namespace MOMS.Persistence.Migrations
                 table: "ProcedureList",
                 column: "SequencingId");
             migrationBuilder.CreateIndex(
-                name: "IX_ProcedureList_ProcedureId",
-                schema: "CustomerContext",
-                table: "ProcedureList",
-                column: "ProcedureId");//--this
+                  name: "IX_ProcedureList_ProcedureId",
+                  schema: "CustomerContext",
+                  table: "ProcedureList",
+                  column: "ProcedureId");//--this
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reception_CustomerId",
@@ -484,6 +486,17 @@ namespace MOMS.Persistence.Migrations
                 schema: "CustomerContext",
                 table: "Sequencing",
                 column: "CustomerId");
+            migrationBuilder.CreateIndex(
+                name: "FK_Sequencing_DoctorId",
+                schema: "CustomerContext",
+                table: "Sequencing",
+                column: "DoctorId");//--this
+            migrationBuilder.CreateIndex(
+                name: "FK_Sequencing_TherapistId",
+                schema: "CustomerContext",
+                table: "Sequencing",
+                column: "TherapistId");//--this
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

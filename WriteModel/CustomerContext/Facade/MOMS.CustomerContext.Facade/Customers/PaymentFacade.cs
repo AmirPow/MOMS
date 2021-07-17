@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Framework.Core.ApplicationService;
+using Framework.Facade;
+using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
+using MOMS.CustomerContext.Facade.Contracts.Customers;
 
 namespace MOMS.CustomerContext.Facade.Customers
 {
-    class PaymentFacade
+    public class PaymentFacade : FacadeCommandBase, IPaymentCommandFacade
     {
+        public PaymentFacade(ICommandBus commandBus) : base(commandBus)
+        {
+
+        }
+        public void AddPayment(AddPaymentCommand command)
+        {
+            _commandBus.Dispatch(command);
+        }
+
+        public void DeletePayment(DeletePaymentCommand command)
+        {
+            _commandBus.Dispatch(command);
+        }
+
+        public void UpdatePayment(UpdatePaymentCommand command)
+        {
+            _commandBus.Dispatch(command);
+        }
     }
 }

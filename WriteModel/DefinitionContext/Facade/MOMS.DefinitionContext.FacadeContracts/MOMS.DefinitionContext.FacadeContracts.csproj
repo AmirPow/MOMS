@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ApplicationService\MOMS.DefinitionContext.ApplicationService.Contracts\MOMS.DefinitionContext.ApplicationService.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

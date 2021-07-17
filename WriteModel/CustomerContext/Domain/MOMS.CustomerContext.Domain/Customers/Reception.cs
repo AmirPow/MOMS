@@ -34,6 +34,10 @@ namespace MOMS.CustomerContext.Domain.Customers
                 ReceptionDetails.Add(Detail);
             }
         }
+        public void AddPayment(Payment payment)
+        {
+            Payments.Add(payment);
+        }
 
         public Guid CustomerId { get; set; }
         public Guid DoctorId { get; set; }

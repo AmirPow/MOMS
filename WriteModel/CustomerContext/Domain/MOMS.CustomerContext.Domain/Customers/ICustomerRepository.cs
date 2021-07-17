@@ -14,5 +14,6 @@ namespace MOMS.CustomerContext.Domain.Customers
         int GetLastFileNumber();
         Customer GetCustomerByFileNumber(string fileNumber);
         Customer GetCustomerById(Guid id);
+        
     }
 }

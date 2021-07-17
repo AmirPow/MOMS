@@ -15,5 +15,6 @@ namespace MOMS.ReadModel.Facade.Contracts.Customers.DataContracts
         public int Gender { get; set; }
         public int MartialStatus { get; set; }
         public DateTime RegDateTime { get; set; }
+        public int ReceptionCouunt { get; set; }
     }
 }

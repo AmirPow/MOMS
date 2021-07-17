@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MOMS.CustomerContext.Domain.Customers;
+
 using System.Data;
 
 namespace MOMS.CustomerContext.Persistence.Customers.Mappings
@@ -15,7 +16,7 @@ namespace MOMS.CustomerContext.Persistence.Customers.Mappings
             builder.Property(a => a.PaymentDateTime).HasColumnType(SqlDbType.DateTime.ToString()).IsRequired();
             builder.Property(a => a.Cash).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
             builder.Property(a => a.Pose).HasColumnType(SqlDbType.Int.ToString()).IsRequired();
-            builder.HasOne<Reception>().WithMany().HasForeignKey(e => e.ReceptionId);
+            builder.HasOne<Reception>().WithMany(e=>e.Payments).HasForeignKey(e => e.ReceptionId);
         }
     }
 }

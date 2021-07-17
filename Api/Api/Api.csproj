@@ -22,6 +22,9 @@
     <ProjectReference Include="..\..\WriteModel\CustomerContext\ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\FacadeContracts\MOMS.CustomerContext.Facade.Contracts\MOMS.CustomerContext.Facade.Contracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\CustomerContext\MOMS.CustomerContext.Configuration\MOMS.CustomerContext.Configuration.csproj" />
+    <ProjectReference Include="..\..\WriteModel\DefinitionContext\ApplicationService\MOMS.DefinitionContext.ApplicationService.Contracts\MOMS.DefinitionContext.ApplicationService.Contracts.csproj" />
+    <ProjectReference Include="..\..\WriteModel\DefinitionContext\Facade\MOMS.DefinitionContext.FacadeContracts\MOMS.DefinitionContext.FacadeContracts.csproj" />
+    <ProjectReference Include="..\..\WriteModel\DefinitionContext\MOMS.DefinitionContext.Configuration\MOMS.DefinitionContext.Configuration.csproj" />
     <ProjectReference Include="..\..\WriteModel\MOMS.Persistence\MOMS.Persistence.csproj" />
   </ItemGroup>
 

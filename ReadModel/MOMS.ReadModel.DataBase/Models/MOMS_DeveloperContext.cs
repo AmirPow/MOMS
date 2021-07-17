@@ -279,6 +279,10 @@ namespace MOMS.ReadModel.DataBase.Models
             {
                 entity.ToTable("Sequencing", "CustomerContext");
 
+                entity.HasIndex(e => e.DoctorId, "FK_Sequencing_DoctorId");
+
+                entity.HasIndex(e => e.TherapistId, "FK_Sequencing_TherapistId");
+
                 entity.HasIndex(e => e.CustomerId, "IX_Sequencing_CustomerId");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();

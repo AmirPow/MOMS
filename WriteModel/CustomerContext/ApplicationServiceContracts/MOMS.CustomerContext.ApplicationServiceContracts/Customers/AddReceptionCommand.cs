@@ -6,7 +6,7 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
 {
     public class AddReceptionCommand : Command
     {
-        public Guid CustomerId { get; set; }
+        public string CustomerFileNumber { get; set; }
         public Guid DoctorId { get; set; }
         public Guid TherapistId { get; set; }
         public int Price { get; set; }

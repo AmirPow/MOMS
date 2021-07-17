@@ -14,10 +14,10 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
         }
         public void Execute(AddReceptionCommand command)
         {
-            var customer = customerRepository.GetCustomerById(command.CustomerId);
+            var customer = customerRepository.GetCustomerByFileNumber(command.CustomerFileNumber);
 
             var newReception = new Reception(
-                command.CustomerId,
+                customer.Id,
                 command.DoctorId,
                 command.TherapistId,
                 command.Price,

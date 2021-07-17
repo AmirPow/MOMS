@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 
 namespace MOMS.CustomerContext.Facade.Contracts.Customers
 {
     public interface IPaymentCommandFacade
     {
+        void AddPayment(AddPaymentCommand command);
+        void DeletePayment(DeletePaymentCommand command);
+        void UpdatePayment(UpdatePaymentCommand command);
     }
 }
