@@ -4,6 +4,7 @@ namespace MOMS.ReadModel.Facade.Contracts.Customers.DataContracts
 {
     public class CustomerDto
     {
+        public Guid CustomerId { get; set; }
         public string FileNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

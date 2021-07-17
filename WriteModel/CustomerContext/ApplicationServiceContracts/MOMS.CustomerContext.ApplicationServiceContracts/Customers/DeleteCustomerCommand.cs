@@ -10,5 +10,6 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
     public class DeleteCustomerCommand : Command
     {
         public string FileNumber { get; set; }
+        public Guid CustomerId { get; set; }
     }
 }

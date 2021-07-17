@@ -23,14 +23,14 @@ namespace Api.Controllers
             sequencingCommandFacade.CreateSequencing(createSequencingCommand);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateSequencing")]
         public void Update(UpdateSequencingCommand updateSequencingCommand)
         {
             sequencingCommandFacade.UpdateSequencing(updateSequencingCommand);
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteSequencing")]
         public void Delete (DeleteSequencingCommand deleteSequencingCommand)
         {

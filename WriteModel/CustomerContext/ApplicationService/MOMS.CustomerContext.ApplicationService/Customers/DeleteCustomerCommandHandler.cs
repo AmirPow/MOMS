@@ -14,7 +14,7 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
         }
         public void Execute(DeleteCustomerCommand command)
         {
-            var customer = customerRepository.GetCustomerByFileNumber(command.FileNumber);
+            var customer = customerRepository.GetCustomerById(command.CustomerId);
             customerRepository.DeleteCustomer(customer);
         }
     }
