@@ -54,18 +54,22 @@ namespace MOMS.CustomerContext.Persistence.Customers
         {
            var fileNumber = _dbContext.Set<Customer>().Select(a => a.FileNumber).Max();
             if (fileNumber == null)
-                fileNumber= "0";
-            else
-            {
-               fileNumber = _dbContext.Set<Customer>().Select(a => a.FileNumber).Max();
-            }
-               
+                fileNumber= "0";              
             return int.Parse(fileNumber);
+        }
+        public int GetLastPaymentNumber()
+        {
+            var paymentNumber = _dbContext.Set<Reception>().Select(e => e.PaymentNumber).Max();
+            if (paymentNumber == null)
+                paymentNumber = "0";
+            return int.Parse(paymentNumber);
         }
 
         protected override IEnumerable<Expression<Func<Customer, object>>> GetAggregateExpression()
         {
             return null;
         }
+
+
     }
 }

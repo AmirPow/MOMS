@@ -22,7 +22,7 @@ namespace MOMS.ReadModel.Facade.Definitions
                         DoctorId = doctor.Id,
                         FullName = doctor.FirstName + " " + doctor.LastName
                     }
-        ).ToList();
+                    ).ToList();
         }
 
         public List<TherapistListDto> GetTherapists()
@@ -33,7 +33,7 @@ namespace MOMS.ReadModel.Facade.Definitions
                         TherapistId = therapist.Id,
                         FullName = therapist.FirstName + therapist.LastName
                     }
-        ).ToList();
+                    ).ToList();
         }
 
         public List<ProcedureListDto> GetProcedures()
@@ -45,7 +45,7 @@ namespace MOMS.ReadModel.Facade.Definitions
                         ProcedureName = procedure.Name,
                         ProcedurePrice = procedure.Price
                     }
-        ).ToList();
+                    ).ToList();
         }
     }
 }

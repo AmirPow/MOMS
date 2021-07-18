@@ -5,15 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
-    <ProjectReference Include="..\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
+    <Compile Remove="Doctors\**" />
+    <Compile Remove="Procedures\**" />
+    <Compile Remove="Sequencing\**" />
+    <Compile Remove="Therapists\**" />
+    <EmbeddedResource Remove="Doctors\**" />
+    <EmbeddedResource Remove="Procedures\**" />
+    <EmbeddedResource Remove="Sequencing\**" />
+    <EmbeddedResource Remove="Therapists\**" />
+    <None Remove="Doctors\**" />
+    <None Remove="Procedures\**" />
+    <None Remove="Sequencing\**" />
+    <None Remove="Therapists\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Doctors\" />
-    <Folder Include="Therapists\" />
-    <Folder Include="Procedures\" />
-    <Folder Include="Sequencing\" />
+    <ProjectReference Include="..\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
+    <ProjectReference Include="..\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

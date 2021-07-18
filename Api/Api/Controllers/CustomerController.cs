@@ -4,7 +4,7 @@ using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers;
 using MOMS.ReadModel.Facade.Contracts.Customers.DataContracts;
-using MOMS.ReadModel.Facade.Contracts.Definitions.DataContracts;
+using System;
 using System.Collections.Generic;
 
 namespace Api.Controllers
@@ -22,7 +22,7 @@ namespace Api.Controllers
             ICustomerCommandFacade customerCommandFacade,
             IReceptionCommandFacade receptionCommandFacade,
             ICustomerQueryFacade customerQueryFacade,
-            IPaymentCommandFacade  paymentCommandFacade
+            IPaymentCommandFacade paymentCommandFacade
             )
         {
             this.customerCommandFacade = customerCommandFacade;
@@ -63,10 +63,30 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public IList<CustomerDto> GetAllCustomers()
+        public CustomerList GetAllCustomers()
         {
             return customerQueryFacade.GetAll();
         }
 
+        [HttpGet]
+        [Route("GetCustomerReceptions")]
+        public CustomerReceptionList GetCustomerReceptions(string customerFileNumber)
+        {
+            return customerQueryFacade.GetCustomerReceptions(customerFileNumber);
+        }
+
+        [HttpGet]
+        [Route("GetCustomerReceptionDetails")]
+        public CustomerReceptionDetailList GetCustomerReceptionDetails(Guid receptionId)
+        {
+            return customerQueryFacade.GetCustomerReceptionDetails(receptionId);
+        }
+
+        [HttpGet]
+        [Route("GetCustomerPayments")]
+        public CustomerPaymentList GetCustomerReceptionDetails(string customerFileNumber)
+        {
+            return customerQueryFacade.GetCustomerPayments(customerFileNumber);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace MOMS.CustomerContext.Domain.Customers
     {
         public Reception() { }
         public Reception(
+            string paymentNumber,
             Guid customerId,
             Guid doctorId,
             Guid therapistId,
@@ -17,6 +18,7 @@ namespace MOMS.CustomerContext.Domain.Customers
             int totalPrice
             )
         {
+            PaymentNumber = paymentNumber;
             CustomerId = customerId;
             DoctorId = doctorId;
             TherapistId = therapistId;
@@ -38,7 +40,7 @@ namespace MOMS.CustomerContext.Domain.Customers
         {
             Payments.Add(payment);
         }
-
+        public string PaymentNumber { get; set; }
         public Guid CustomerId { get; set; }
         public Guid DoctorId { get; set; }
         public Guid TherapistId { get; set; }
