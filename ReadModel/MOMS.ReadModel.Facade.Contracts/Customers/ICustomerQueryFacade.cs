@@ -7,6 +7,6 @@ namespace MOMS.ReadModel.Facade.Contracts.Customers
 {
     public interface ICustomerQueryFacade :IQueryFacade
     {
-        List<CustomerDto> GetAll();
+        List<CustomerDto> GetAll(string keyword);
     }
 }
