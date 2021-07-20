@@ -99,13 +99,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Facade", "Facade", "{8FA390
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationService", "ApplicationService", "{C5728234-D5E4-4EBE-9793-5581CBD9DB5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.DefinitionContext.Facade", "WriteModel\DefinitionContext\Facade\MOMS.DefinitionContext.Facade\MOMS.DefinitionContext.Facade.csproj", "{65ED8953-30C0-40FF-B178-9E5E3741B400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.Facade", "WriteModel\DefinitionContext\Facade\MOMS.DefinitionContext.Facade\MOMS.DefinitionContext.Facade.csproj", "{65ED8953-30C0-40FF-B178-9E5E3741B400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.DefinitionContext.FacadeContracts", "WriteModel\DefinitionContext\Facade\MOMS.DefinitionContext.FacadeContracts\MOMS.DefinitionContext.FacadeContracts.csproj", "{3DF424F4-91A5-4B21-9E06-137A47B56820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.FacadeContracts", "WriteModel\DefinitionContext\Facade\MOMS.DefinitionContext.FacadeContracts\MOMS.DefinitionContext.FacadeContracts.csproj", "{3DF424F4-91A5-4B21-9E06-137A47B56820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.DefinitionContext.ApplicationService", "WriteModel\DefinitionContext\ApplicationService\MOMS.DefinitionContext.ApplicationService\MOMS.DefinitionContext.ApplicationService.csproj", "{7193EAA4-EABC-4A15-B050-B2BE4D0503CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.ApplicationService", "WriteModel\DefinitionContext\ApplicationService\MOMS.DefinitionContext.ApplicationService\MOMS.DefinitionContext.ApplicationService.csproj", "{7193EAA4-EABC-4A15-B050-B2BE4D0503CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.DefinitionContext.ApplicationService.Contracts", "WriteModel\DefinitionContext\ApplicationService\MOMS.DefinitionContext.ApplicationService.Contracts\MOMS.DefinitionContext.ApplicationService.Contracts.csproj", "{2D463870-BCB7-44AC-9A45-10D43ABC0013}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MOMS.DefinitionContext.ApplicationService.Contracts", "WriteModel\DefinitionContext\ApplicationService\MOMS.DefinitionContext.ApplicationService.Contracts\MOMS.DefinitionContext.ApplicationService.Contracts.csproj", "{2D463870-BCB7-44AC-9A45-10D43ABC0013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.UserContext.Facade", "WriteModel\UserContext\Facade\MOMS.UserContext.Facade\MOMS.UserContext.Facade.csproj", "{B07C05CB-C4D3-4731-B0E9-FA7D25A9A24F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.UserContext.Facade.Contracts", "WriteModel\UserContext\FacadeContracts\MOMS.UserContext.Facade.Contracts\MOMS.UserContext.Facade.Contracts.csproj", "{8405E02F-1A1B-4AD1-AF8B-D85D7812D16A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.UserContext.Application", "WriteModel\UserContext\Application\MOMS.UserContext.Application\MOMS.UserContext.Application.csproj", "{152D00BF-55D7-48A3-80FD-3A20EF7B1714}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.UserContext.ApplicationService", "WriteModel\UserContext\ApplicationService\MOMS.UserContext.ApplicationService\MOMS.UserContext.ApplicationService.csproj", "{1CC8C5B9-5106-4D4A-B527-593B34D16B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOMS.UserContext.Configuration", "MOMS.UserContext.Configuration\MOMS.UserContext.Configuration.csproj", "{35CDDE78-AE8E-455E-99F7-2AC14B02374F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +247,26 @@ Global
 		{2D463870-BCB7-44AC-9A45-10D43ABC0013}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D463870-BCB7-44AC-9A45-10D43ABC0013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D463870-BCB7-44AC-9A45-10D43ABC0013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B07C05CB-C4D3-4731-B0E9-FA7D25A9A24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B07C05CB-C4D3-4731-B0E9-FA7D25A9A24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B07C05CB-C4D3-4731-B0E9-FA7D25A9A24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B07C05CB-C4D3-4731-B0E9-FA7D25A9A24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8405E02F-1A1B-4AD1-AF8B-D85D7812D16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8405E02F-1A1B-4AD1-AF8B-D85D7812D16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8405E02F-1A1B-4AD1-AF8B-D85D7812D16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8405E02F-1A1B-4AD1-AF8B-D85D7812D16A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{152D00BF-55D7-48A3-80FD-3A20EF7B1714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{152D00BF-55D7-48A3-80FD-3A20EF7B1714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{152D00BF-55D7-48A3-80FD-3A20EF7B1714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{152D00BF-55D7-48A3-80FD-3A20EF7B1714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CC8C5B9-5106-4D4A-B527-593B34D16B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC8C5B9-5106-4D4A-B527-593B34D16B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC8C5B9-5106-4D4A-B527-593B34D16B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC8C5B9-5106-4D4A-B527-593B34D16B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CDDE78-AE8E-455E-99F7-2AC14B02374F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CDDE78-AE8E-455E-99F7-2AC14B02374F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CDDE78-AE8E-455E-99F7-2AC14B02374F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CDDE78-AE8E-455E-99F7-2AC14B02374F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -289,6 +319,11 @@ Global
 		{3DF424F4-91A5-4B21-9E06-137A47B56820} = {8FA390FE-1A98-4614-8FFD-63AC0022E90F}
 		{7193EAA4-EABC-4A15-B050-B2BE4D0503CB} = {C5728234-D5E4-4EBE-9793-5581CBD9DB5D}
 		{2D463870-BCB7-44AC-9A45-10D43ABC0013} = {C5728234-D5E4-4EBE-9793-5581CBD9DB5D}
+		{B07C05CB-C4D3-4731-B0E9-FA7D25A9A24F} = {03E79A38-DFCD-47AD-9B6E-04A9D70E697D}
+		{8405E02F-1A1B-4AD1-AF8B-D85D7812D16A} = {03E79A38-DFCD-47AD-9B6E-04A9D70E697D}
+		{152D00BF-55D7-48A3-80FD-3A20EF7B1714} = {AC9A81B2-A1A4-4401-9242-16EF9F6FDF23}
+		{1CC8C5B9-5106-4D4A-B527-593B34D16B8B} = {AC9A81B2-A1A4-4401-9242-16EF9F6FDF23}
+		{35CDDE78-AE8E-455E-99F7-2AC14B02374F} = {B0BC266D-CBC4-45B6-8A13-0A40FEBB83FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27AECD83-850B-464A-9D5B-69C691DEE937}

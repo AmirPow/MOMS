@@ -61,12 +61,12 @@ namespace Api.Controllers
             paymentCommandFacade.AddPayment(command);
         }
 
-        [HttpGet]
-        [Route("GetAll")]
-        public IList<CustomerDto> GetAllCustomers()
-        {
-            return customerQueryFacade.GetAll(keyword);
-        }
+        //[HttpGet]
+        //[Route("GetAll")]
+        //public IList<CustomerDto> GetAllCustomers()
+        //{
+        //    return customerQueryFacade.GetAll();
+        //}
 
         [HttpGet]
         [Route("GetCustomerReceptions")]

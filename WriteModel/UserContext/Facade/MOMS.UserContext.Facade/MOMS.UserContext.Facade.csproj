@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Framework\Framework.Facade\Framework.Facade.csproj" />
+    <ProjectReference Include="..\..\ApplicationService\MOMS.UserContext.ApplicationService\MOMS.UserContext.ApplicationService.csproj" />
+    <ProjectReference Include="..\..\FacadeContracts\MOMS.UserContext.Facade.Contracts\MOMS.UserContext.Facade.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ using Microsoft.OpenApi.Models;
 using MOMS.Persistence;
 using MOMS.ReadModel.DataBase;
 using MOMS.ReadModel.DataBase.Models;
+using MOMS.UserContext.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,17 +49,17 @@ namespace Api
             }
 
             services.AddHttpContextAccessor();
-
+            services.AddIdentity<ApplicationUser, IdentityRole>();
             services.AddDbContext<IDbContext, MOMSDbContext>(op =>
             {
-                op.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true;");
+                op.UseSqlServer("data source= 185.55.224.3 ;Initial Catalog=dahriman_MOMS  ;User Id=dahriman_AdminUser ;password=@N379645099_A_M ;");
 
             });
 
             services.AddDbContext<MOMS_DeveloperContext>(op =>
             {
                 op.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-                op.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true;");
+                op.UseSqlServer("data source= 185.55.224.3 ;Initial Catalog=dahriman_MOMS  ;User Id=dahriman_AdminUser ;password=@N379645099_A_M ;");
             });
 
 
@@ -120,9 +122,9 @@ namespace Api
             }));
 
             app.UseHttpsRedirection();
-
+            
             app.UseRouting();
-
+            
             app.UseAuthorization();
 
             app.UseCors(builder =>

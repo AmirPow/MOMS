@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\MOMS.UserContext.Configuration\MOMS.UserContext.Configuration.csproj" />
     <ProjectReference Include="..\..\ReadModel\MOMS.ReadModel.Configuration\MOMS.ReadModel.Configuration\MOMS.ReadModel.Configuration.csproj" />
     <ProjectReference Include="..\..\ReadModel\MOMS.ReadModel.DataBase\MOMS.ReadModel.DataBase.csproj" />
     <ProjectReference Include="..\..\ReadModel\MOMS.ReadModel.Facade.Contracts\MOMS.ReadModel.Facade.Contracts.csproj" />
@@ -26,6 +27,8 @@
     <ProjectReference Include="..\..\WriteModel\DefinitionContext\Facade\MOMS.DefinitionContext.FacadeContracts\MOMS.DefinitionContext.FacadeContracts.csproj" />
     <ProjectReference Include="..\..\WriteModel\DefinitionContext\MOMS.DefinitionContext.Configuration\MOMS.DefinitionContext.Configuration.csproj" />
     <ProjectReference Include="..\..\WriteModel\MOMS.Persistence\MOMS.Persistence.csproj" />
+    <ProjectReference Include="..\..\WriteModel\UserContext\ApplicationService\MOMS.UserContext.ApplicationService\MOMS.UserContext.ApplicationService.csproj" />
+    <ProjectReference Include="..\..\WriteModel\UserContext\FacadeContracts\MOMS.UserContext.Facade.Contracts\MOMS.UserContext.Facade.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
