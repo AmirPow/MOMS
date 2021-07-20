@@ -1,6 +1,7 @@
 ﻿using MOMS.ReadModel.DataBase.Models;
 using MOMS.ReadModel.Facade.Contracts.Definitions;
 using MOMS.ReadModel.Facade.Contracts.Definitions.DataContracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,7 @@ namespace MOMS.ReadModel.Facade.Definitions
         {
             this.context = context;
         }
-        public List<DoctorListDto> GetDoctors()
+        public List<DoctorListDto> GetDoctors(string searchText)
         {
             return (from doctor in context.Doctors
                     select new DoctorListDto
@@ -25,7 +26,7 @@ namespace MOMS.ReadModel.Facade.Definitions
         ).ToList();
         }
 
-        public List<TherapistListDto> GetTherapists()
+        public List<TherapistListDto> GetTherapists(string searchText)
         {
             return (from therapist in context.Therapists
                     select new TherapistListDto
@@ -36,7 +37,7 @@ namespace MOMS.ReadModel.Facade.Definitions
         ).ToList();
         }
 
-        public List<ProcedureListDto> GetProcedures()
+        public List<ProcedureListDto> GetProcedures(string searchText)
         {
             return (from procedure in context.Procedures
                     select new ProcedureListDto

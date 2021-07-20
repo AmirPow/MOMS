@@ -26,21 +26,21 @@ namespace Api.Controllers
         }
         [HttpGet]
         [Route("GetDoctors")]
-        public IList<DoctorListDto> GetDoctors()
+        public IList<DoctorListDto> GetDoctors(string searchText)
         {
-            return procedureQueryFacade.GetDoctors();
+            return procedureQueryFacade.GetDoctors(searchText);
         }
         [HttpGet]
         [Route("GetTherapists")]
-        public IList<TherapistListDto> GetTherapists()
+        public IList<TherapistListDto> GetTherapists(string searchText)
         {
-            return procedureQueryFacade.GetTherapists();
+            return procedureQueryFacade.GetTherapists(searchText);
         }
         [HttpGet]
         [Route("GetProcedure")]
-        public IList<ProcedureListDto> GetProcedure()
+        public IList<ProcedureListDto> GetProcedure(string searchText)
         {
-            return procedureQueryFacade.GetProcedures();
+            return procedureQueryFacade.GetProcedures(searchText);
         }
         //[HttpPost]
         //[Route("CreateProcedure")]
