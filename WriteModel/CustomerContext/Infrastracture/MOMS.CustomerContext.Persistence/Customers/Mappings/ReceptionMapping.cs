@@ -11,6 +11,7 @@ namespace MOMS.CustomerContext.Persistence.Customers.Mappings
         public override void Configure(EntityTypeBuilder<Reception> builder)
         {
             Initial(builder);
+            builder.Property(a => a.PaymentNumber).HasMaxLength(250).IsRequired();
             builder.Property(a=>a.CustomerId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.Property(a => a.DoctorId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();
             builder.Property(a => a.TherapistId).HasColumnType(SqlDbType.UniqueIdentifier.ToString()).IsRequired();

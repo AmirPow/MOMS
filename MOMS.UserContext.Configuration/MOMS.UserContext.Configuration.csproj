@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.DependencyInjection\framework.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Framework\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\Framework\Framework.Facade\Framework.Facade.csproj" />
+    <ProjectReference Include="..\WriteModel\MOMS.Persistence\MOMS.Persistence.csproj" />
+    <ProjectReference Include="..\WriteModel\UserContext\ApplicationService\MOMS.UserContext.ApplicationService\MOMS.UserContext.ApplicationService.csproj" />
+    <ProjectReference Include="..\WriteModel\UserContext\Application\MOMS.UserContext.Application\MOMS.UserContext.Application.csproj" />
+    <ProjectReference Include="..\WriteModel\UserContext\DomainService\MOMS.UserContext.DomainService\MOMS.UserContext.DomainService.csproj" />
+    <ProjectReference Include="..\WriteModel\UserContext\Domain\MOMS.UserContext.Domain\MOMS.UserContext.Domain.csproj" />
+    <ProjectReference Include="..\WriteModel\UserContext\FacadeContracts\MOMS.UserContext.Facade.Contracts\MOMS.UserContext.Facade.Contracts.csproj" />
+    <ProjectReference Include="..\WriteModel\UserContext\Facade\MOMS.UserContext.Facade\MOMS.UserContext.Facade.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -7,7 +7,9 @@ using Framework.Core.DependencyInjection;
 using Framework.Core.Domain;
 using Framework.Core.Facade;
 using Framework.Core.Persistence;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using MOMS.UserContext.Domain;
 
 namespace framework.DependencyInjection
 {
@@ -33,8 +35,8 @@ namespace framework.DependencyInjection
            RegisterTransient<IHandler>();
            RegisterTransient<IDomainService>();
            RegisterTransient<IQueryFacade>();
+           RegisterTransient<UserManager<ApplicationUser>>();
 
-       
         }
 
        private void RegisterFramework()

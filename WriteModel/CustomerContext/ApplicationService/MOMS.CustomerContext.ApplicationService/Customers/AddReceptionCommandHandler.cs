@@ -15,8 +15,8 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
         public void Execute(AddReceptionCommand command)
         {
             var customer = customerRepository.GetCustomerByFileNumber(command.CustomerFileNumber);
-
             var newReception = new Reception(
+                (customerRepository.GetLastPaymentNumber() +1 ).ToString(),
                 customer.Id,
                 command.DoctorId,
                 command.TherapistId,

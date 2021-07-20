@@ -12,6 +12,7 @@ namespace MOMS.CustomerContext.Domain.Customers
         void DeleteCustomer(Customer customer);
         void UpdateCustomer(Customer customer);
         int GetLastFileNumber();
+        int GetLastPaymentNumber();
         Customer GetCustomerByFileNumber(string fileNumber);
         Customer GetCustomerById(Guid id);
         

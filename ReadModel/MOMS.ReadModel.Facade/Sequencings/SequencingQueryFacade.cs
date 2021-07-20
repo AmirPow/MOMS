@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MOMS.ReadModel.Facade.Sequencings
 {
-    class SequencingQueryFacade
+    public class SequencingQueryFacade
     {
     }
 }

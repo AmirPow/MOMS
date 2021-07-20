@@ -22,6 +22,7 @@ namespace MOMS.ReadModel.DataBase.Models
         public int ExteraPrice { get; set; }
         public int Discount { get; set; }
         public int TotalPrice { get; set; }
+        public string PaymentNumber { get; set; }
 
         public virtual Customer Customer { get; set; }
         public virtual Doctor Doctor { get; set; }

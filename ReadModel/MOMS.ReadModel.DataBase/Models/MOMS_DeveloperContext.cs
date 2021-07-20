@@ -241,6 +241,11 @@ namespace MOMS.ReadModel.DataBase.Models
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
+                entity.Property(e => e.PaymentNumber)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .HasDefaultValueSql("(N'')");
+
                 entity.Property(e => e.ReceptionDateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Customer)
