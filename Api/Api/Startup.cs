@@ -2,6 +2,7 @@
 using Framework.Core.DependencyInjection;
 using Framework.Core.Persistence;
 using Framework.Domain;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MOMS.Persistence;
 using MOMS.ReadModel.DataBase;
@@ -21,6 +23,7 @@ using MOMS.UserContext.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -55,6 +58,29 @@ namespace Api
                 op.UseSqlServer("data source= 185.55.224.3 ;Initial Catalog=dahriman_MOMS  ;User Id=dahriman_AdminUser ;password=@N379645099_A_M ;");
 
             });
+
+
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<MOMSDbContext>()
+                ;
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(Configuration["jwt:key"])),
+                    ClockSkew = TimeSpan.Zero
+                });
+
+
+
+
+
+
+
 
             services.AddDbContext<MOMS_DeveloperContext>(op =>
             {
@@ -122,11 +148,11 @@ namespace Api
             }));
 
             app.UseHttpsRedirection();
-            
-            app.UseRouting();
-            
-            app.UseAuthorization();
 
+            app.UseRouting();
+
+            app.UseAuthorization();
+            app.UseAuthorization();
             app.UseCors(builder =>
                 builder.WithOrigins("*")
                     .AllowAnyHeader()

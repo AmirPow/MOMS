@@ -35,7 +35,8 @@ namespace framework.DependencyInjection
            RegisterTransient<IHandler>();
            RegisterTransient<IDomainService>();
            RegisterTransient<IQueryFacade>();
-           RegisterTransient<UserManager<ApplicationUser>>();
+           RegisterTransient<UserManager<IdentityUser>>();
+          
 
         }
 

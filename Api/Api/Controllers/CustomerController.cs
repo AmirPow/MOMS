@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MOMS.CustomerContext.ApplicationServiceContracts.Customers;
 using MOMS.CustomerContext.Facade.Contracts.Customers;
@@ -31,6 +33,7 @@ namespace Api.Controllers
             this.paymentCommandFacade = paymentCommandFacade;
         }
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("CreateCustomer")]
         public void Create(CreateCustomerCommand createCustomerCommand)
         {

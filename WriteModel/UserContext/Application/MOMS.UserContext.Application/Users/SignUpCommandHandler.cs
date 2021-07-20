@@ -12,20 +12,17 @@ namespace ClassLibrary1.Users
 {
     public class SignUpCommandHandler : ICommandHandler<SignUpCommand>
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        
 
-        public SignUpCommandHandler(UserManager<ApplicationUser> userManager)
+        public SignUpCommandHandler()
         {
-            this.userManager = userManager;
+           
         }
         public void Execute(SignUpCommand command)
         {
-            
-            var applicationUser = new ApplicationUser();
-            applicationUser.UserName = command.UserName;
-            applicationUser.PasswordHash = command.Password;
 
-            userManager.CreateAsync(applicationUser);
+
+            
         }
     }
 }

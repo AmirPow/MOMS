@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using MOMS.Contracts;
 using MOMS.UserContext.ApplicationService.Users;
 using MOMS.UserContext.Facade.Contracts.Users;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
@@ -13,18 +20,86 @@ namespace Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserCommandFacade userCommandFacade;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly IConfiguration configuration;
 
-        public UserController(IUserCommandFacade userCommandFacade)
+        public UserController(UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            IConfiguration configuration
+            )
         {
-            this.userCommandFacade = userCommandFacade;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.configuration = configuration;
         }
 
         [HttpPost]
-        [Route("SignUp")]
-        public void SignUp(SignUpCommand command)
+        public async Task<ActionResult<UserToken>> CreateUser([FromBody] UserInfo model)
         {
-            userCommandFacade.SignUp(command);
+            var user = new IdentityUser { UserName = model.UserName};
+            var result = await userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                return BuildToken(model);
+            }
+            else
+            {
+                return BadRequest("نام کاربری یا کلمه عبور اشتباه است");
+            }
         }
+
+        private UserToken BuildToken(UserInfo userInfo) 
+        {
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name,userInfo.UserName),
+                new Claim("Moms","Medical")
+            };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expiration = DateTime.UtcNow.AddYears(1);
+
+            JwtSecurityToken token = new JwtSecurityToken(
+                issuer: null,
+                audience: null,
+                claims: claims,
+                expires: expiration,
+                signingCredentials: creds
+                );
+
+            return new UserToken()
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Expiration = expiration
+            };
+        }
+        [HttpPost("Login")]
+        public async Task<ActionResult<UserToken>> Login([FromBody] UserInfo userInfo)
+        {
+            var result = await signInManager.PasswordSignInAsync(userInfo.UserName, userInfo.Password, isPersistent: false, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                return BuildToken(userInfo);
+            }
+            else
+            {
+                return BadRequest("نام کاربری و یا کلمه عبور وارد شده اشتباه می باشد"); 
+            }
+        }
+
+        //private readonly IUserCommandFacade userCommandFacade;
+
+        //public UserController(IUserCommandFacade userCommandFacade)
+        //{
+        //    this.userCommandFacade = userCommandFacade;
+        //}
+
+        //[HttpPost]
+        //[Route("SignUp")]
+        //public void SignUp(SignUpCommand command)
+        //{
+        //    userCommandFacade.SignUp(command);
+        //}
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System.IO;
 
@@ -8,7 +9,9 @@ namespace Api
     {
         public static void Main(string[] args)
         {
+
             CreateHostBuilder(args).Build().Run();
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -17,7 +20,9 @@ namespace Api
                 {
                     webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
                     webBuilder.UseIISIntegration();
-                    webBuilder.UseStartup<Startup>();
-                });
+                    webBuilder.UseStartup<Startup>().UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build());
+
+                })
+            ;
     }
 }
