@@ -242,6 +242,7 @@ namespace MOMS.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
+                    PaymentNumber = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CustomerId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     DoctorId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
                     TherapistId = table.Column<Guid>(type: "UniqueIdentifier", nullable: false),
@@ -313,7 +314,6 @@ namespace MOMS.Persistence.Migrations
                         principalTable: "Therapist",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-
                 });
 
             migrationBuilder.CreateTable(
@@ -434,7 +434,6 @@ namespace MOMS.Persistence.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_ReceptionId",
                 schema: "CustomerContext",
@@ -496,7 +495,6 @@ namespace MOMS.Persistence.Migrations
                 schema: "CustomerContext",
                 table: "Sequencing",
                 column: "TherapistId");//--this
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

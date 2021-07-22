@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -33,7 +34,7 @@ namespace Api.Controllers
             this.paymentCommandFacade = paymentCommandFacade;
         }
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("CreateCustomer")]
         public void Create(CreateCustomerCommand createCustomerCommand)
         {

@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MOMS.Contracts;
-using MOMS.UserContext.ApplicationService.Users;
-using MOMS.UserContext.Facade.Contracts.Users;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -35,9 +33,10 @@ namespace Api.Controllers
         }
 
         [HttpPost]
+        [Route("SignUp")]
         public async Task<ActionResult<UserToken>> CreateUser([FromBody] UserInfo model)
         {
-            var user = new IdentityUser { UserName = model.UserName};
+            var user = new IdentityUser { UserName = model.UserName };
             var result = await userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -49,7 +48,7 @@ namespace Api.Controllers
             }
         }
 
-        private UserToken BuildToken(UserInfo userInfo) 
+        private UserToken BuildToken(UserInfo userInfo)
         {
             var claims = new List<Claim>()
             {
@@ -74,7 +73,8 @@ namespace Api.Controllers
                 Expiration = expiration
             };
         }
-        [HttpPost("Login")]
+        [HttpPost]
+        [Route("SignIn")]
         public async Task<ActionResult<UserToken>> Login([FromBody] UserInfo userInfo)
         {
             var result = await signInManager.PasswordSignInAsync(userInfo.UserName, userInfo.Password, isPersistent: false, lockoutOnFailure: false);
@@ -84,22 +84,8 @@ namespace Api.Controllers
             }
             else
             {
-                return BadRequest("نام کاربری و یا کلمه عبور وارد شده اشتباه می باشد"); 
+                return BadRequest("نام کاربری و یا کلمه عبور وارد شده اشتباه می باشد");
             }
         }
-
-        //private readonly IUserCommandFacade userCommandFacade;
-
-        //public UserController(IUserCommandFacade userCommandFacade)
-        //{
-        //    this.userCommandFacade = userCommandFacade;
-        //}
-
-        //[HttpPost]
-        //[Route("SignUp")]
-        //public void SignUp(SignUpCommand command)
-        //{
-        //    userCommandFacade.SignUp(command);
-        //}
     }
 }

@@ -7,10 +7,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.8" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\WriteModel\UserContext\Domain\MOMS.UserContext.Domain\MOMS.UserContext.Domain.csproj" />
     <ProjectReference Include="..\Framework.ApplicationService\Framework.ApplicationService.csproj" />
     <ProjectReference Include="..\Framework.AssemblyHelper\Framework.AssemblyHelper.csproj" />
     <ProjectReference Include="..\Framework.Core\Framework.Core.csproj" />

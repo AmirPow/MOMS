@@ -9,7 +9,6 @@
     <ProjectReference Include="..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
     <ProjectReference Include="..\..\..\Framework\Framework.Facade\Framework.Facade.csproj" />
     <ProjectReference Include="..\..\MOMS.Persistence\MOMS.Persistence.csproj" />
-    <ProjectReference Include="..\..\UserContext\DomainService\MOMS.UserContext.DomainService\MOMS.UserContext.DomainService.csproj" />
     <ProjectReference Include="..\ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts\MOMS.CustomerContext.ApplicationServiceContracts.csproj" />
     <ProjectReference Include="..\ApplicationService\MOMS.CustomerContext.ApplicationService\MOMS.CustomerContext.ApplicationService.csproj" />
     <ProjectReference Include="..\DomainService\MOMS.CustomerContext.DomainService\MOMS.CustomerContext.DomainService.csproj" />

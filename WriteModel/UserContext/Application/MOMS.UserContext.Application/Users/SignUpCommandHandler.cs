@@ -8,21 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1.Users
+namespace MOMS.UserContext.Application.Users
 {
     public class SignUpCommandHandler : ICommandHandler<SignUpCommand>
     {
-        
+
 
         public SignUpCommandHandler()
         {
-           
+
         }
         public void Execute(SignUpCommand command)
         {
 
 
-            
+
         }
     }
 }

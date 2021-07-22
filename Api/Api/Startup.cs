@@ -19,7 +19,6 @@ using Microsoft.OpenApi.Models;
 using MOMS.Persistence;
 using MOMS.ReadModel.DataBase;
 using MOMS.ReadModel.DataBase.Models;
-using MOMS.UserContext.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +42,10 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<MOMSDbContext>()
+    .AddDefaultTokenProviders();
+
             services.AddControllers();
             var assemblyDiscovery = new AssemblyDiscovery("MOMS*.dll");
             var registrars = assemblyDiscovery.DiscoverInstances<IRegistrar>("MOMS").ToList();
@@ -52,18 +55,21 @@ namespace Api
             }
 
             services.AddHttpContextAccessor();
-            services.AddIdentity<ApplicationUser, IdentityRole>();
+
+
             services.AddDbContext<IDbContext, MOMSDbContext>(op =>
             {
-                op.UseSqlServer("data source= 185.55.224.3 ;Initial Catalog=dahriman_MOMS  ;User Id=dahriman_AdminUser ;password=@N379645099_A_M ;");
+                op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
             });
+            services.AddDbContext<MOMSDbContext>(op =>
+            {
+                op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+
+            });
+            services.AddHttpClient();
 
 
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<MOMSDbContext>()
-                ;
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -75,26 +81,32 @@ namespace Api
                     ClockSkew = TimeSpan.Zero
                 });
 
-
-
-
-
-
-
-
             services.AddDbContext<MOMS_DeveloperContext>(op =>
             {
                 op.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-                op.UseSqlServer("data source= 185.55.224.3 ;Initial Catalog=dahriman_MOMS  ;User Id=dahriman_AdminUser ;password=@N379645099_A_M ;");
+                op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-
-
-
-
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "tomsAuth"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                { 
+                {
+                   new OpenApiSecurityScheme
+                   {
+                      Reference = new OpenApiReference {
+                      Type = ReferenceType.SecurityScheme,
+                      Id = "tomsAuth" }
+                   }, new List<string>() }
+                 });
             });
 
             services.AddCors();
@@ -151,7 +163,7 @@ namespace Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors(builder =>
                 builder.WithOrigins("*")

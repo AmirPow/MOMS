@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
 using Framework.ApplicationService;
 using Framework.AssemblyHelper;
 using Framework.Core.ApplicationService;
@@ -9,7 +11,6 @@ using Framework.Core.Facade;
 using Framework.Core.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using MOMS.UserContext.Domain;
 
 namespace framework.DependencyInjection
 {
@@ -36,11 +37,22 @@ namespace framework.DependencyInjection
            RegisterTransient<IDomainService>();
            RegisterTransient<IQueryFacade>();
            RegisterTransient<UserManager<IdentityUser>>();
-          
 
+
+            RegisterTransientHttpClient();
         }
 
-       private void RegisterFramework()
+        private void RegisterTransientHttpClient()
+        {
+            _serviceCollection.AddTransient<HttpClient>(provider =>
+            {
+                HttpClient client = new HttpClient();
+                client.Timeout = new TimeSpan(0, 0, 0, 30);
+                return client;
+            });
+        }
+
+        private void RegisterFramework()
        {
            _serviceCollection.AddScoped<IAssemblyDiscovery, AssemblyDiscovery>(a => new AssemblyDiscovery("TMS*.dll"));
            _serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();

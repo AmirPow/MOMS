@@ -20,7 +20,8 @@ namespace Api
                 {
                     webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
                     webBuilder.UseIISIntegration();
-                    webBuilder.UseStartup<Startup>().UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build());
+                    webBuilder.UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build());
+                    webBuilder.UseStartup<Startup>();
 
                 })
             ;

@@ -14,7 +14,7 @@ namespace MOMS.Persistence
         {
             var optionsBuilder = new DbContextOptionsBuilder<MOMSDbContext>();
 
-            optionsBuilder.UseSqlServer("data source= 185.55.224.3 ;Initial Catalog=dahriman_MOMS  ;User Id=dahriman_AdminUser ;password=@N379645099_A_M ;");
+            optionsBuilder.UseSqlServer("Server =.,1433;Data Source=.;Database = MOMS_Developer;Integrated Security=true;");
             return new MOMSDbContext(optionsBuilder.Options);
         }
     }
