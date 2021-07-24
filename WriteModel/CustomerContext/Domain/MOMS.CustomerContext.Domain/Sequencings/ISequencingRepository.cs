@@ -12,5 +12,6 @@ namespace MOMS.CustomerContext.Domain.Sequencings
         void DeleteSequencing(Sequencing sequencing);
         void UpdateSequencing(Sequencing sequencing);
         Sequencing GetBySequencingId(Guid sequencingId);
+
     }
 }

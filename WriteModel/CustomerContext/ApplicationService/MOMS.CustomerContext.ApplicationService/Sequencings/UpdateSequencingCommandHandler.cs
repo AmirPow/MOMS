@@ -23,7 +23,6 @@ namespace MOMS.CustomerContext.ApplicationService.Sequencings
                             );
             sequencing.AddProcedureList(command.ProcedureLists);
             sequencingRepository.CreateSequencing(sequencing);
-
         }
     }
 }

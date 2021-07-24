@@ -34,7 +34,6 @@ namespace Api.Controllers
             this.paymentCommandFacade = paymentCommandFacade;
         }
         [HttpPost]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("CreateCustomer")]
         public void Create(CreateCustomerCommand createCustomerCommand)
         {
@@ -65,12 +64,12 @@ namespace Api.Controllers
             paymentCommandFacade.AddPayment(command);
         }
 
-        //[HttpGet]
-        //[Route("GetAll")]
-        //public IList<CustomerDto> GetAllCustomers()
-        //{
-        //    return customerQueryFacade.GetAll();
-        //}
+        [HttpGet]
+        [Route("GetAll")]
+        public CustomerList GetAllCustomers(string keyword)
+        {
+            return customerQueryFacade.GetAll(keyword);
+        }
 
         [HttpGet]
         [Route("GetCustomerReceptions")]
@@ -91,6 +90,20 @@ namespace Api.Controllers
         public CustomerPaymentList GetCustomerReceptionDetails(string customerFileNumber)
         {
             return customerQueryFacade.GetCustomerPayments(customerFileNumber);
+        }
+
+        [HttpGet]
+        [Route("GetReceptionsList")]
+        public ReceptionsList GetReceptionsList(DateTime startDate,DateTime endDate)
+        {
+            return customerQueryFacade.GetReceptions(startDate, endDate);
+        }
+
+        [HttpGet]
+        [Route("GetPaymentsList")]
+        public PaymentsList GetPaymentsList(DateTime startDate, DateTime endDate)
+        {
+            return customerQueryFacade.GetPayments(startDate, endDate);
         }
     }
 }

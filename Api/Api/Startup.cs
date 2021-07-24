@@ -43,8 +43,8 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<MOMSDbContext>()
-    .AddDefaultTokenProviders();
+           .AddEntityFrameworkStores<MOMSDbContext>()
+           .AddDefaultTokenProviders();
 
             services.AddControllers();
             var assemblyDiscovery = new AssemblyDiscovery("MOMS*.dll");
@@ -92,21 +92,29 @@ namespace Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    In = ParameterLocation.Header,
+                    Description =
+                            "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
+                    In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "tomsAuth"
+                    Scheme = "bearer",
+                    BearerFormat = "JWT"
                 });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                { 
-                {
-                   new OpenApiSecurityScheme
-                   {
-                      Reference = new OpenApiReference {
-                      Type = ReferenceType.SecurityScheme,
-                      Id = "tomsAuth" }
-                   }, new List<string>() }
-                 });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[]{ }
+                    }
+
+                });
+                c.DescribeAllParametersInCamelCase();
             });
 
             services.AddCors();

@@ -19,25 +19,27 @@ namespace MOMS.ReadModel.Facade.Customers
 
         public int Enums { get; private set; }
 
-        public CustomerList GetAll()
+        public CustomerList GetAll(string keyword)
         {
-            var customers = (from customer in context.Customers
-                             select new CustomerDto()
-                             {
-                                 FileNumber = customer.FileNumber,
-                                 FullName = customer.FirstName + " " + customer.LastName,
-                                 FatherName = customer.FatherName,
-                                 MobileNumber = customer.MobileNumber,
-                                 PhoneNumber = customer.PhoneNumber,
-                                 Gender = customer.Gender,
-                                 MartialStatus = customer.MartialStatus,
-                                 RegDateTime = customer.RegDateTime,
-                                 NationalCode = customer.NationalCode,
-                                 ReceptionCouunt = customer.Receptions.Count(),
-                             });
-
-
-
+            var query = context.Customers.AsQueryable();
+            if (!string.IsNullOrEmpty(keyword))
+                query = query.Where(r => (r.FirstName.Contains(keyword)) || (r.LastName.Contains(keyword)) || (r.FileNumber == keyword));
+            var customers = query.Select(r => new CustomerDto()
+            {
+                FileNumber = r.FileNumber,
+                CustomerId = r.Id,
+                FirstName = r.FirstName,
+                LastName = r.LastName,
+                FullName = r.FirstName + " " + r.LastName,
+                FatherName = r.FatherName,
+                MobileNumber = r.MobileNumber,
+                PhoneNumber = r.PhoneNumber,
+                Gender = r.Gender,
+                MartialStatus = r.MartialStatus,
+                RegDateTime = r.RegDateTime,
+                NationalCode = r.NationalCode,
+                ReceptionCouunt = r.Receptions.Count()
+            });
             return new CustomerList { Data = customers.ToList(), TotalCount = customers.Count() };
 
         }
@@ -52,6 +54,7 @@ namespace MOMS.ReadModel.Facade.Customers
                                      where customer.FileNumber == customerFileNumber
                                      select new CustomerReceptionsDto
                                      {
+                                         PaymentNumber= reception.PaymentNumber,
                                          CustomerFullName = customer.FirstName + " " + customer.LastName,
                                          ReceptionDateTime = reception.ReceptionDateTime,
                                          DoctorName = doctor.FirstName + " " + doctor.LastName,
@@ -59,7 +62,7 @@ namespace MOMS.ReadModel.Facade.Customers
                                          Price = reception.Price,
                                          ExteraPrice = reception.ExteraPrice,
                                          Discount = reception.Discount,
-                                         TotalPrice = reception.TotalPrice,
+                                         TotalPrice = reception.TotalPrice
                                      });
             return new CustomerReceptionList { Data = cutomerReceptions.ToList(), TotalCount = cutomerReceptions.Count() };
 
@@ -94,6 +97,46 @@ namespace MOMS.ReadModel.Facade.Customers
                                     );
             var totalPayment = customerPayments.Select(e => e.Pose).Sum() + customerPayments.Select(e => e.Cash).Sum();
             return new CustomerPaymentList { Data = customerPayments.ToList(), TotalCount = customerPayments.Count(), TotalPayment = totalPayment };
+        }
+
+        public ReceptionsList GetReceptions(DateTime startDate , DateTime endDate)
+        {
+            var receptions = (from customer in context.Customers
+                              join reception in context.Receptions on customer.Id equals reception.CustomerId
+                              join doctor in context.Doctors on reception.DoctorId equals doctor.Id
+                              join therapist in context.Therapists on reception.TherapistId equals therapist.Id
+                              where reception.ReceptionDateTime >= startDate  && reception.ReceptionDateTime <= endDate
+                              select new ReceptionsDto
+                              {
+                                  PaymentNumber = reception.PaymentNumber,
+                                  CustomerFullName = customer.FirstName + " " + customer.LastName,
+                                  ReceptionDateTime = reception.ReceptionDateTime,
+                                  DoctorName = doctor.FirstName + " " + doctor.LastName,
+                                  TherapistIdName = therapist.FirstName + " " + therapist.LastName,
+                                  Price = reception.Price,
+                                  ExteraPrice = reception.ExteraPrice,
+                                  Discount = reception.Discount,
+                                  TotalPrice = reception.TotalPrice
+                              });
+            return new ReceptionsList { Data = receptions.ToList(), TotalCount = receptions.Count() };
+        }
+
+        public PaymentsList GetPayments(DateTime startDate, DateTime endDate)
+        {
+            var payments = (from payment in context.Payments
+                            join reception in context.Receptions on payment.ReceptionId equals reception.Id
+                            where reception.ReceptionDateTime >= startDate && reception.ReceptionDateTime <= endDate
+                            select new PaymentsDto
+                            {
+                                PaymantNumber = reception.PaymentNumber,
+                                PaymentDateTime = payment.PaymentDateTime,
+                                Pose = payment.Pose,
+                                Cash = payment.Cash,
+                                TotalPayment = (payment.Cash + payment.Pose).ToString(),
+                                TotalPrice = reception.TotalPrice.ToString()
+                            }
+                            );           
+            return new PaymentsList { Data = payments.ToList(), TotalCount = payments.Count() };
         }
     }
 }

@@ -38,6 +38,7 @@ namespace Api.Controllers
         {
             var user = new IdentityUser { UserName = model.UserName };
             var result = await userManager.CreateAsync(user, model.Password);
+            
             if (result.Succeeded)
             {
                 return BuildToken(model);
@@ -57,7 +58,7 @@ namespace Api.Controllers
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiration = DateTime.UtcNow.AddYears(1);
+            var expiration = DateTime.UtcNow.AddDays(1);
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: null,
@@ -80,6 +81,7 @@ namespace Api.Controllers
             var result = await signInManager.PasswordSignInAsync(userInfo.UserName, userInfo.Password, isPersistent: false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
+                
                 return BuildToken(userInfo);
             }
             else
