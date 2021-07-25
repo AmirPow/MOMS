@@ -1,12 +1,11 @@
-﻿using System;
+﻿using MOMS.ReadModel.Facade.Contracts.Sequencings.DataContracts;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MOMS.ReadModel.Facade.Contracts.Sequencings
 {
     public interface ISequencingQueryFacade
     {
+        List<SequencingDto> GetAll(string keyworad , DateTime startDate,DateTime endDate);
     }
 }

@@ -66,7 +66,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public CustomerList GetAllCustomers(string keyword)
+        public IList<CustomerDto> GetAllCustomers(string keyword)
         {
             return customerQueryFacade.GetAll(keyword);
         }
