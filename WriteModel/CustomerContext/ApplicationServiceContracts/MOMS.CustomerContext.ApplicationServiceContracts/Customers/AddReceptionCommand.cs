@@ -13,6 +13,8 @@ namespace MOMS.CustomerContext.ApplicationServiceContracts.Customers
         public int ExteraPrice { get; set; }
         public int Discount { get; set; }
         public int TotalPrice { get; set; }
+        public int Cash { get; set; }
+        public int Pose { get; set; }
         public List<Guid> ProcedureList { get; set; }
     }
 }

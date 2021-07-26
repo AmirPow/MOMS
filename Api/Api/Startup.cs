@@ -171,14 +171,14 @@ namespace Api
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+
             app.UseCors(builder =>
                 builder.WithOrigins("*")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
             );
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

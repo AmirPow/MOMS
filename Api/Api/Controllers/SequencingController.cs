@@ -7,7 +7,7 @@ using MOMS.CustomerContext.Facade.Contracts.Sequencings;
 
 namespace Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SequencingController : ControllerBase

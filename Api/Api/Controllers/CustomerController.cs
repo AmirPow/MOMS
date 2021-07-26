@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -66,7 +66,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public CustomerList GetAllCustomers(string keyword)
+        public IList<CustomerDto> GetAllCustomers(string keyword)
         {
             return customerQueryFacade.GetAll(keyword);
         }
@@ -94,7 +94,7 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("GetReceptionsList")]
-        public ReceptionsList GetReceptionsList(DateTime startDate,DateTime endDate)
+        public IList<ReceptionsDto> GetReceptionsList(DateTime startDate, DateTime endDate)
         {
             return customerQueryFacade.GetReceptions(startDate, endDate);
         }

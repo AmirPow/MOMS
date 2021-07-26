@@ -19,12 +19,12 @@ namespace MOMS.ReadModel.Facade.Customers
 
         public int Enums { get; private set; }
 
-        public CustomerList GetAll(string keyword)
+        public IList<CustomerDto> GetAll(string keyword)
         {
             var query = context.Customers.AsQueryable();
             if (!string.IsNullOrEmpty(keyword))
                 query = query.Where(r => (r.FirstName.Contains(keyword)) || (r.LastName.Contains(keyword)) || (r.FileNumber == keyword));
-            var customers = query.Select(r => new CustomerDto()
+            return query.Select(r => new CustomerDto()
             {
                 FileNumber = r.FileNumber,
                 CustomerId = r.Id,
@@ -39,8 +39,9 @@ namespace MOMS.ReadModel.Facade.Customers
                 RegDateTime = r.RegDateTime,
                 NationalCode = r.NationalCode,
                 ReceptionCouunt = r.Receptions.Count()
-            });
-            return new CustomerList { Data = customers.ToList(), TotalCount = customers.Count() };
+            }).OrderByDescending(c=>c.FileNumber)
+                .ToList();
+            //return new CustomerList { Data = customers.ToList(), TotalCount = customers.Count() };
 
         }
 
@@ -99,14 +100,14 @@ namespace MOMS.ReadModel.Facade.Customers
             return new CustomerPaymentList { Data = customerPayments.ToList(), TotalCount = customerPayments.Count(), TotalPayment = totalPayment };
         }
 
-        public ReceptionsList GetReceptions(DateTime startDate , DateTime endDate)
+        public IList<ReceptionsDto> GetReceptions(DateTime startDate , DateTime endDate)
         {
-            var receptions = (from customer in context.Customers
+            return (from customer in context.Customers
                               join reception in context.Receptions on customer.Id equals reception.CustomerId
                               join doctor in context.Doctors on reception.DoctorId equals doctor.Id
                               join therapist in context.Therapists on reception.TherapistId equals therapist.Id
-                              where reception.ReceptionDateTime >= startDate  && reception.ReceptionDateTime <= endDate
-                              select new ReceptionsDto
+                              where reception.ReceptionDateTime.Date >= startDate.Date && reception.ReceptionDateTime.Date <= endDate.Date
+                    select new ReceptionsDto
                               {
                                   PaymentNumber = reception.PaymentNumber,
                                   CustomerFullName = customer.FirstName + " " + customer.LastName,
@@ -117,8 +118,8 @@ namespace MOMS.ReadModel.Facade.Customers
                                   ExteraPrice = reception.ExteraPrice,
                                   Discount = reception.Discount,
                                   TotalPrice = reception.TotalPrice
-                              });
-            return new ReceptionsList { Data = receptions.ToList(), TotalCount = receptions.Count() };
+                              }).OrderByDescending(c=>c.ReceptionDateTime).ToList();
+           // return new ReceptionsList { Data = receptions.ToList(), TotalCount = receptions.Count() };
         }
 
         public PaymentsList GetPayments(DateTime startDate, DateTime endDate)
