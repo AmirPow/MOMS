@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MOMS.CustomerContext.ApplicationServiceContracts.Sequencing;
 using MOMS.CustomerContext.Facade.Contracts.Sequencings;
-
+using MOMS.ReadModel.Facade.Contracts.Sequencings;
+using MOMS.ReadModel.Facade.Contracts.Sequencings.DataContracts;
+using System;
+using System.Collections.Generic;
 
 namespace Api.Controllers
 {
@@ -13,10 +16,14 @@ namespace Api.Controllers
     public class SequencingController : ControllerBase
     {
         private readonly ISequencingCommandFacade sequencingCommandFacade;
+        private readonly ISequencingQueryFacade sequencingQueryFacade;
 
-        public SequencingController(ISequencingCommandFacade sequencingCommandFacade)
+        public SequencingController(ISequencingCommandFacade sequencingCommandFacade,
+            ISequencingQueryFacade sequencingQueryFacade
+            )
         {
             this.sequencingCommandFacade = sequencingCommandFacade;
+            this.sequencingQueryFacade = sequencingQueryFacade;
         }
         [HttpPost]
         [Route("CreateSequencing")]
@@ -38,7 +45,12 @@ namespace Api.Controllers
         {
             sequencingCommandFacade.DeleteSequencing(deleteSequencingCommand);
         }
-
+        [HttpGet]
+        [Route("GetAllSequencing")]
+        public IList<SequencingDto> GetSequencing(string keyword , DateTime startDate , DateTime endDate)
+        {
+            return sequencingQueryFacade.GetAll(keyword, startDate, endDate);
+        }
 
     }
 }
