@@ -102,7 +102,7 @@ namespace MOMS.ReadModel.Facade.Customers
                               join reception in context.Receptions on customer.Id equals reception.CustomerId
                               join doctor in context.Doctors on reception.DoctorId equals doctor.Id
                               join therapist in context.Therapists on reception.TherapistId equals therapist.Id
-                              where reception.ReceptionDateTime >= startDate  && reception.ReceptionDateTime <= endDate
+                              where reception.ReceptionDateTime.Date >= startDate.Date  && reception.ReceptionDateTime.Date <= endDate.Date
                               select new ReceptionsDto
                               {
                                   PaymentNumber = reception.PaymentNumber,
@@ -122,7 +122,7 @@ namespace MOMS.ReadModel.Facade.Customers
         {
             return (from payment in context.Payments
                             join reception in context.Receptions on payment.ReceptionId equals reception.Id
-                            where reception.ReceptionDateTime >= startDate && reception.ReceptionDateTime <= endDate
+                            where reception.ReceptionDateTime.Date >= startDate.Date && reception.ReceptionDateTime.Date <= endDate.Date
                             select new PaymentsDto
                             {
                                 PaymantNumber = reception.PaymentNumber,

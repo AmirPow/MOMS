@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SequencingController : ControllerBase

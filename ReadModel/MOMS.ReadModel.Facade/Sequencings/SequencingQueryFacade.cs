@@ -24,8 +24,8 @@ namespace MOMS.ReadModel.Facade.Sequencings
                      join customer in context.Customers on sequencing.CustomerId equals customer.Id
                      join doctor in context.Doctors on sequencing.DoctorId equals doctor.Id
                      join therapist in context.Therapists on sequencing.TherapistId equals therapist.Id
-                     where sequencing.TurnDateTime >= startDate && sequencing.TurnDateTime <= endDate
-                     select new SequencingDto
+                    where sequencing.TurnDateTime.Date >= startDate.Date && sequencing.TurnDateTime.Date <= endDate.Date
+                    select new SequencingDto
                      {
                          CustomerId = customer.Id,
                          SequencingId = sequencing.Id,
@@ -33,7 +33,7 @@ namespace MOMS.ReadModel.Facade.Sequencings
                          DoctorName = doctor.FirstName + " " + doctor.LastName,
                          TherapistName = therapist.FirstName + " " + therapist.LastName,
                          TurnDateTime = sequencing.TurnDateTime
-                     }).Where(x => x.CustomerName.Contains(keyworad.ToLower())).ToList();            
+                     }).ToList();            
         }
     }
 }

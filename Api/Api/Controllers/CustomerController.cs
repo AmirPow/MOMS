@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -39,13 +39,13 @@ namespace Api.Controllers
         {
             customerCommandFacade.CreateCustomer(createCustomerCommand);
         }
-        [HttpDelete]
+        [HttpPost]
         [Route("DeleteCustomer")]
         public void Delete(DeleteCustomerCommand deleteCustomerCommand)
         {
             customerCommandFacade.DeleteCustomer(deleteCustomerCommand);
         }
-        [HttpPut]
+        [HttpPost]
         [Route("UpdateCustomer")]
         public void Update(UpdateCustomerCommand UpdateCustomerCommand)
         {
@@ -73,35 +73,35 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("GetCustomerReceptions")]
-        public CustomerReceptionList GetCustomerReceptions(string customerFileNumber)
+        public IList<CustomerReceptionsDto> GetCustomerReceptions(string customerFileNumber)
         {
             return customerQueryFacade.GetCustomerReceptions(customerFileNumber);
         }
 
         [HttpGet]
         [Route("GetCustomerReceptionDetails")]
-        public CustomerReceptionDetailList GetCustomerReceptionDetails(Guid receptionId)
+        public IList<CustomerReceptionDetailsDto> GetCustomerReceptionDetails(Guid receptionId)
         {
             return customerQueryFacade.GetCustomerReceptionDetails(receptionId);
         }
 
         [HttpGet]
         [Route("GetCustomerPayments")]
-        public CustomerPaymentList GetCustomerReceptionDetails(string customerFileNumber)
+        public IList<CustomerPaymentsDto> GetCustomerReceptionDetails(string customerFileNumber)
         {
             return customerQueryFacade.GetCustomerPayments(customerFileNumber);
         }
 
         [HttpGet]
         [Route("GetReceptionsList")]
-        public ReceptionsList GetReceptionsList(DateTime startDate,DateTime endDate)
+        public IList<ReceptionsDto> GetReceptionsList(DateTime startDate,DateTime endDate)
         {
             return customerQueryFacade.GetReceptions(startDate, endDate);
         }
 
         [HttpGet]
         [Route("GetPaymentsList")]
-        public PaymentsList GetPaymentsList(DateTime startDate, DateTime endDate)
+        public IList<PaymentsDto> GetPaymentsList(DateTime startDate, DateTime endDate)
         {
             return customerQueryFacade.GetPayments(startDate, endDate);
         }
