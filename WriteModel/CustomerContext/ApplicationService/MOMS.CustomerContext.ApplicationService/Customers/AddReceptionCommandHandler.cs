@@ -25,7 +25,9 @@ namespace MOMS.CustomerContext.ApplicationService.Customers
                 command.Discount,
                 command.TotalPrice);
             newReception.AddReceptionDetail(command.ProcedureList);
-            
+
+            var payment = new Payment(newReception.Id, command.Cash, command.Pose);
+            newReception.AddPayment(payment);
             customer.Receptions.Add(newReception);
         }
     }
