@@ -6,6 +6,6 @@ namespace MOMS.ReadModel.Facade.Contracts.Sequencings
 {
     public interface ISequencingQueryFacade
     {
-        List<SequencingDto> GetAll(string keyworad , DateTime startDate,DateTime endDate);
+        List<SequencingDto> GetAll(DateTime startDate,DateTime endDate);
     }
 }

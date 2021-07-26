@@ -18,7 +18,7 @@ namespace MOMS.ReadModel.Facade.Sequencings
             this.context = context;
         }
 
-        public List<SequencingDto> GetAll(string keyworad , DateTime startDate , DateTime endDate)
+        public List<SequencingDto> GetAll(DateTime startDate , DateTime endDate)
         {
             return (from sequencing in context.Sequencings
                      join customer in context.Customers on sequencing.CustomerId equals customer.Id
@@ -33,7 +33,9 @@ namespace MOMS.ReadModel.Facade.Sequencings
                          DoctorName = doctor.FirstName + " " + doctor.LastName,
                          TherapistName = therapist.FirstName + " " + therapist.LastName,
                          TurnDateTime = sequencing.TurnDateTime
-                     }).Where(x => x.CustomerName.Contains(keyworad.ToLower())).ToList();            
+                     })
+                     //.Where(x => x.CustomerName.Contains(keyworad.ToLower()))
+                     .ToList();            
         }
     }
 }
