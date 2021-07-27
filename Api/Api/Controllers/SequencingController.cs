@@ -15,16 +15,17 @@ namespace Api.Controllers
     [ApiController]
     public class SequencingController : ControllerBase
     {
-        
+
         private readonly ISequencingCommandFacade sequencingCommandFacade;
- 
+        private readonly ISequencingQueryFacade sequencingQueryFacade;
 
         public SequencingController(
-            ISequencingCommandFacade sequencingCommandFacade 
+            ISequencingCommandFacade sequencingCommandFacade,
+            ISequencingQueryFacade sequencingQueryFacade
             )
         {
             this.sequencingCommandFacade = sequencingCommandFacade;
-       
+            this.sequencingQueryFacade = sequencingQueryFacade;
         }
         [HttpPost]
         [Route("CreateSequencing")]
@@ -47,12 +48,12 @@ namespace Api.Controllers
             sequencingCommandFacade.DeleteSequencing(deleteSequencingCommand);
         }
 
-        //[HttpGet]
-        //[Route("GetAllSequencing")]
-        //public IList<SequencingDto> GetSequencing(DateTime startDate, DateTime endDate)
-        //{
-        //    return sequencingQueryFacade.GetAll(startDate, endDate);
-        //}
+        [HttpGet]
+        [Route("GetAllSequencing")]
+        public IList<SequencingDto> GetSequencing(DateTime startDate, DateTime endDate)
+        {
+            return sequencingQueryFacade.GetAll(startDate, endDate);
+        }
 
     }
 }

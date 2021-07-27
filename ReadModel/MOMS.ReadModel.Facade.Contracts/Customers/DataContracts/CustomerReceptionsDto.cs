@@ -8,6 +8,7 @@ namespace MOMS.ReadModel.Facade.Contracts.Customers.DataContracts
 {
     public class CustomerReceptionsDto
     {
+        public Guid ReceptionId { get; set; }
         public string PaymentNumber { get; set; }
         public string CustomerFullName { get; set; }
         public string DoctorName  { get; set; }

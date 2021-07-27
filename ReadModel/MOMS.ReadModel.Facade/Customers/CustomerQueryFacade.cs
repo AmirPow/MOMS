@@ -54,6 +54,7 @@ namespace MOMS.ReadModel.Facade.Customers
                     where customer.FileNumber == customerFileNumber
                     select new CustomerReceptionsDto
                     {
+                        ReceptionId = reception.Id,
                         PaymentNumber = reception.PaymentNumber,
                         CustomerFullName = customer.FirstName + " " + customer.LastName,
                         ReceptionDateTime = reception.ReceptionDateTime,
@@ -105,6 +106,7 @@ namespace MOMS.ReadModel.Facade.Customers
                               where reception.ReceptionDateTime.Date >= startDate.Date  && reception.ReceptionDateTime.Date <= endDate.Date
                               select new ReceptionsDto
                               {
+                                  ReceptionId = reception.Id,
                                   PaymentNumber = reception.PaymentNumber,
                                   CustomerFullName = customer.FirstName + " " + customer.LastName,
                                   ReceptionDateTime = reception.ReceptionDateTime,
