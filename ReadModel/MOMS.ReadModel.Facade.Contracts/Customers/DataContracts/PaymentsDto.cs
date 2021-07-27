@@ -8,6 +8,7 @@ namespace MOMS.ReadModel.Facade.Contracts.Customers.DataContracts
 {
     public class PaymentsDto
     {
+        public string FullName { get; set; }
         public string PaymantNumber { get; set; }
         public DateTime PaymentDateTime { get; set; }
         public int Cash { get; set; }

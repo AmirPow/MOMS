@@ -124,9 +124,11 @@ namespace MOMS.ReadModel.Facade.Customers
         {
             return (from payment in context.Payments
                             join reception in context.Receptions on payment.ReceptionId equals reception.Id
+                            join customer in context.Customers on reception.CustomerId equals customer.Id
                             where reception.ReceptionDateTime.Date >= startDate.Date && reception.ReceptionDateTime.Date <= endDate.Date
                             select new PaymentsDto
                             {
+                                FullName = customer.FirstName + " " + customer.LastName, 
                                 PaymantNumber = reception.PaymentNumber,
                                 PaymentDateTime = payment.PaymentDateTime,
                                 Pose = payment.Pose,
