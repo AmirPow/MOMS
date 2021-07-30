@@ -51,7 +51,8 @@ namespace MOMS.ReadModel.Facade.Sequencings
                         DoctorName = doctor.FirstName + " " + doctor.LastName,
                         TherapistName = therapist.FirstName + " " + therapist.LastName,
                         TurnDateTime = sequencing.TurnDateTime
-                    }).ToList();
+                    }).OrderByDescending(c=>c.TurnDateTime)
+                    .ToList();
         }
     }
 }

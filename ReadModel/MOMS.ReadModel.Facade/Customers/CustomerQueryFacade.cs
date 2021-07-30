@@ -62,7 +62,8 @@ namespace MOMS.ReadModel.Facade.Customers
                         ExteraPrice = reception.ExteraPrice,
                         Discount = reception.Discount,
                         TotalPrice = reception.TotalPrice
-                    }).ToList();
+                    }).OrderByDescending(c=>c.ReceptionDateTime)
+                    .ToList();
             
 
         }
@@ -91,7 +92,8 @@ namespace MOMS.ReadModel.Facade.Customers
                         PaymentDateTime = payment.PaymentDateTime,
                         Cash = payment.Cash,
                         Pose = payment.Pose
-                    }).ToList();
+                    }).OrderByDescending(c=>c.PaymentDateTime)
+                    .ToList();
         }
         public IList<ReceptionsDto>  GetReceptions(DateTime startDate , DateTime endDate)
         {
