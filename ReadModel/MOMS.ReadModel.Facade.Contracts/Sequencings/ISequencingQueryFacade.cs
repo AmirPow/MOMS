@@ -8,5 +8,7 @@ namespace MOMS.ReadModel.Facade.Contracts.Sequencings
     public interface ISequencingQueryFacade : IQueryFacade
     {
         List<SequencingDto> GetAll(DateTime startDate,DateTime endDate);
+
+        IList<CustomerSequencingDto> GetCustomerSequencing(string customerFileNumber);
     }
 }

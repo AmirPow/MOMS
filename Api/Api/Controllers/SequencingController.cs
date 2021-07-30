@@ -55,5 +55,12 @@ namespace Api.Controllers
             return sequencingQueryFacade.GetAll(startDate, endDate);
         }
 
+        [HttpGet]
+        [Route("GetCustomerSequencing")]
+        public IList<CustomerSequencingDto> GetCustomerSequencing(string customerFileNumber)
+        {
+            return sequencingQueryFacade.GetCustomerSequencing(customerFileNumber);
+        }
+
     }
 }

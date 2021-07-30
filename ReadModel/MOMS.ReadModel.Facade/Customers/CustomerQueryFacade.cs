@@ -18,7 +18,6 @@ namespace MOMS.ReadModel.Facade.Customers
         }
 
         public int Enums { get; private set; }
-
         public IList<CustomerDto> GetAll(string keyword)
         {
             var query = context.Customers.AsQueryable();
@@ -43,7 +42,6 @@ namespace MOMS.ReadModel.Facade.Customers
           
 
         }
-
         public IList<CustomerReceptionsDto> GetCustomerReceptions(string customerFileNumber)
         {
 
@@ -81,7 +79,6 @@ namespace MOMS.ReadModel.Facade.Customers
                     ).ToList();
            
         }
-
         public IList<CustomerPaymentsDto> GetCustomerPayments(string customerFileNumber)
         {
             return (from customer in context.Customers
@@ -96,7 +93,6 @@ namespace MOMS.ReadModel.Facade.Customers
                         Pose = payment.Pose
                     }).ToList();
         }
-
         public IList<ReceptionsDto>  GetReceptions(DateTime startDate , DateTime endDate)
         {
             return (from customer in context.Customers
@@ -118,8 +114,6 @@ namespace MOMS.ReadModel.Facade.Customers
                                   TotalPrice = reception.TotalPrice
                               }).ToList();
         }
-
-            
         public IList<PaymentsDto> GetPayments(DateTime startDate, DateTime endDate)
         {
             return (from payment in context.Payments
