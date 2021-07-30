@@ -136,10 +136,10 @@ namespace Api
 
 
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("v1/swagger.json", "MOMS V1");
-            });
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("v1/swagger.json", "MOMS V1");
+            //});
 
             if (env.IsProduction() || env.IsStaging() || env.IsEnvironment("Staging_2"))
             {
