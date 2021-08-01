@@ -38,7 +38,8 @@ namespace MOMS.ReadModel.Facade.Customers
                 RegDateTime = r.RegDateTime,
                 NationalCode = r.NationalCode,
                 ReceptionCouunt = r.Receptions.Count()
-            }).ToList();
+            }).OrderByDescending(c=>c.FileNumber)
+                .ToList();
           
 
         }
