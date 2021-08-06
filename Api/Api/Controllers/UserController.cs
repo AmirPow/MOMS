@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -41,7 +43,7 @@ namespace Api.Controllers
             
             if (result.Succeeded)
             {
-                return BuildToken(model);
+                return await BuildToken(model);
             }
             else
             {
@@ -49,7 +51,7 @@ namespace Api.Controllers
             }
         }
 
-        private UserToken BuildToken(UserInfo userInfo)
+        private async Task<UserToken> BuildToken(UserInfo userInfo)
         {
             var claims = new List<Claim>()
             {
@@ -74,6 +76,24 @@ namespace Api.Controllers
                 Expiration = expiration
             };
         }
+
+
+
+
+        [HttpGet("RenewToken")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult<UserToken>> Renew()
+        {
+            var userInfo = new UserInfo()
+            {
+                UserName = HttpContext.User.Identity.Name
+            };
+
+            return await BuildToken(userInfo);
+        }
+
+
+
         [HttpPost]
         [Route("SignIn")]
         public async Task<ActionResult<UserToken>> Login([FromBody] UserInfo userInfo)
@@ -82,7 +102,7 @@ namespace Api.Controllers
             if (result.Succeeded)
             {
                 
-                return BuildToken(userInfo);
+                return await BuildToken(userInfo);
             }
             else
             {
